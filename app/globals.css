@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #F1F1F1;
+  --color-foreground: #262626;
+  --color-muted: #E5E5E5;
+  --color-muted-foreground: #737373;
+  --color-border: #d8d8d8;
+  --color-input: #d8d8d8;
+  --color-ring: #262626;
+  --color-accent: #E5E5E5;
+  --color-accent-foreground: #262626;
+  --color-secondary: #E5E5E5;
+  --color-secondary-foreground: #262626;
+}
+
+@layer base {
+  * {
+    border-color: rgba(38, 38, 38, 0.12);
+    box-sizing: border-box;
+  }
+
+  body {
+    background: #F1F1F1;
+    color: #262626;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  @keyframes accordion-down {
+    from { height: 0; }
+    to { height: var(--radix-accordion-content-height); }
+  }
+  @keyframes accordion-up {
+    from { height: var(--radix-accordion-content-height); }
+    to { height: 0; }
+  }
+  .animate-accordion-down { animation: accordion-down 0.2s ease-out; }
+  .animate-accordion-up { animation: accordion-up 0.2s ease-out; }
+}
