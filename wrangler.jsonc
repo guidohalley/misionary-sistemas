@@ -1,6 +1,5 @@
 {
-	// Workers Builds: el build del dashboard debe ser `npm run build:opennext`
-	// (o `npx opennextjs-cloudflare build`). Solo `npm run build` no genera `.open-next/` ni la config compilada.
+	// `npm run build` ejecuta OpenNext; el paso interno de Next usa `npm run build:next` (ver open-next.config.ts).
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"main": ".open-next/worker.js",
 	"name": "misionary-sistemas",
