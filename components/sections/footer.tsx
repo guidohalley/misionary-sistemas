@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Separator } from "@/components/ui/separator"
+import { CONTACT_EMAIL } from "@/lib/contact"
 
 const LINKS = {
   Producto: [
@@ -24,11 +25,10 @@ const LINKS = {
 
 export function Footer() {
   return (
-    <footer className="py-14 px-6 bg-[#F1F1F1] border-t border-[rgba(38,38,38,0.12)]">
+    <footer className="py-10 sm:py-14 px-4 sm:px-6 bg-background border-t border-foreground/12 pb-[max(2.5rem,env(safe-area-inset-bottom))]">
       <div className="max-w-6xl mx-auto">
-        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-10 mb-12">
-          {/* Brand */}
-          <div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 mb-10 sm:mb-12">
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2 mb-3">
               <Image
                 src="https://cdn.misionary.misionary.com.ar/Logos%20Misionary_M-10.svg"
@@ -37,28 +37,27 @@ export function Footer() {
                 height={28}
                 unoptimized
               />
-              <span className="text-sm font-medium text-[#262626] tracking-tight">
-                misionary<span className="text-[#737373] font-normal">.dev</span>
+              <span className="text-sm font-medium text-foreground tracking-tight">
+                misionary<span className="text-muted-foreground font-normal">.dev</span>
               </span>
             </div>
-            <p className="text-xs text-[#737373] leading-relaxed">
+            <p className="text-xs text-muted-foreground leading-relaxed">
               Agencia de software y sistemas a medida. Posadas, Misiones,
               Argentina.
             </p>
           </div>
 
-          {/* Link columns */}
           {Object.entries(LINKS).map(([group, items]) => (
             <div key={group}>
-              <p className="text-xs font-medium text-[#262626] uppercase tracking-widest mb-3">
+              <p className="text-xs font-medium text-foreground uppercase tracking-widest mb-3">
                 {group}
               </p>
-              <ul className="flex flex-col gap-2">
+              <ul className="flex flex-col gap-0.5">
                 {items.map(({ label, href }) => (
                   <li key={label}>
                     <Link
                       href={href}
-                      className="text-xs text-[#737373] hover:text-[#262626] transition-colors"
+                      className="text-xs text-muted-foreground hover:text-foreground transition-colors inline-flex py-2 min-h-10 items-center touch-manipulation"
                     >
                       {label}
                     </Link>
@@ -69,13 +68,13 @@ export function Footer() {
           ))}
         </div>
 
-        <Separator className="mb-6 bg-[rgba(38,38,38,0.12)]" />
+        <Separator className="mb-6" />
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <p className="text-xs text-[#737373]">
+          <p className="text-xs text-muted-foreground">
             © {new Date().getFullYear()} Misionary · Posadas, Misiones, Argentina
           </p>
-          <p className="text-xs text-[#737373]">hola@misionary.dev</p>
+          <p className="text-xs text-muted-foreground">{CONTACT_EMAIL}</p>
         </div>
       </div>
     </footer>

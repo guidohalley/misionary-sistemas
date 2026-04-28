@@ -65,49 +65,48 @@ const cardVariants = {
 
 export function Testimonials() {
   return (
-    <section id="clientes" className="py-20 px-6 bg-[rgba(38,38,38,0.03)]">
+    <section id="clientes" className="py-14 md:py-20 px-4 sm:px-6 bg-foreground/[0.04]">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          className="max-w-xl mb-12"
+          className="max-w-xl mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <p className="text-xs uppercase tracking-widest text-[#737373] font-medium mb-3">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
             Clientes
           </p>
-          <h2 className="text-3xl font-medium tracking-tight text-[#262626]">
+          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground text-balance">
             Lo que dicen las empresas que ya trabajan con nosotros
           </h2>
         </motion.div>
 
         <motion.div
-          style={{ columnCount: 3, columnGap: "1rem" }}
-          className="[column-count:1] sm:[column-count:2] lg:[column-count:3]"
+          className="columns-1 gap-3 sm:columns-2 sm:gap-4 lg:columns-3"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.08 } } }}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: true, margin: "-40px" }}
         >
-          {TESTIMONIALS.map(({ quote, author, role, company, initials }) => (
+          {TESTIMONIALS.map(({ quote, author, role, company, initials }, i) => (
             <motion.div
-              key={`${author}-${company}`}
+              key={`${company}-${author}-${i}`}
               variants={cardVariants}
-              className="break-inside-avoid mb-4 border border-[rgba(38,38,38,0.12)] rounded-xl p-6 bg-[#F1F1F1]"
+              className="break-inside-avoid mb-3 sm:mb-4 border border-foreground/12 rounded-xl p-5 sm:p-6 bg-background"
             >
-              <blockquote className="text-sm text-[#262626] leading-relaxed mb-5">
+              <blockquote className="text-sm text-foreground leading-relaxed mb-4 sm:mb-5 text-pretty">
                 &ldquo;{quote}&rdquo;
               </blockquote>
               <div className="flex items-center gap-3">
                 <Avatar className="w-8 h-8">
-                  <AvatarFallback className="text-xs bg-[#262626] text-[#F1F1F1]">
+                  <AvatarFallback className="text-xs bg-foreground text-background">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-xs font-medium text-[#262626]">{author}</p>
-                  <p className="text-xs text-[#737373]">
+                  <p className="text-xs font-medium text-foreground">{author}</p>
+                  <p className="text-xs text-muted-foreground">
                     {role} · {company}
                   </p>
                 </div>

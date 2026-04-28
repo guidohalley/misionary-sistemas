@@ -35,39 +35,39 @@ const cardVariants = {
 
 export function Problem() {
   return (
-    <section className="py-20 px-6 bg-[#F1F1F1]">
+    <section className="py-14 md:py-20 px-4 sm:px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          className="max-w-xl mb-12"
+          className="max-w-xl mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <p className="text-xs uppercase tracking-widest text-[#737373] font-medium mb-3">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
             El problema
           </p>
-          <h2 className="text-3xl font-medium tracking-tight text-[#262626]">
+          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground text-balance">
             ¿Seguís operando sin un sistema propio?
           </h2>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-px bg-[rgba(38,38,38,0.12)] rounded-xl overflow-hidden"
+          className="grid md:grid-cols-3 gap-px bg-foreground/12 rounded-xl overflow-hidden"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: true, margin: "-40px" }}
         >
           {PAINS.map(({ icon: Icon, title, description }) => (
             <motion.div
               key={title}
               variants={cardVariants}
-              className="bg-[#F1F1F1] p-8 hover:bg-[rgba(38,38,38,0.03)] transition-colors"
+              className="bg-background p-5 sm:p-8 hover:bg-foreground/[0.04] transition-colors"
             >
-              <Icon size={20} className="text-[#262626] mb-5" strokeWidth={1.5} />
-              <h3 className="text-sm font-medium text-[#262626] mb-2">{title}</h3>
-              <p className="text-sm text-[#737373] leading-relaxed">{description}</p>
+              <Icon size={20} className="text-foreground mb-5" strokeWidth={1.5} />
+              <h3 className="text-sm font-medium text-foreground mb-2">{title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
             </motion.div>
           ))}
         </motion.div>

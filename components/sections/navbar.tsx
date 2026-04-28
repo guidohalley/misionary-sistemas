@@ -6,6 +6,7 @@ import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
 import { Button } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
@@ -29,13 +30,13 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[env(safe-area-inset-top)]",
         scrolled
-          ? "bg-[#F1F1F1]/95 backdrop-blur-sm border-b border-[rgba(38,38,38,0.12)] shadow-[0_1px_0_rgba(38,38,38,0.08)]"
+          ? "bg-background/95 backdrop-blur-sm border-b border-foreground/12 shadow-[0_1px_0_color-mix(in_oklab,var(--color-foreground)_8%,transparent)]"
           : "bg-transparent"
       )}
     >
-      <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2">
           <Image
@@ -46,8 +47,8 @@ export function Navbar() {
             unoptimized
             priority
           />
-          <span className="text-sm font-medium text-[#262626] tracking-tight">
-            misionary<span className="text-[#737373] font-normal">.dev</span>
+          <span className="text-sm font-medium text-foreground tracking-tight">
+            misionary<span className="text-muted-foreground font-normal">.dev</span>
           </span>
         </Link>
 
@@ -57,32 +58,33 @@ export function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-[#737373] hover:text-[#262626] transition-colors duration-200"
+              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* CTA */}
-        <div className="hidden md:flex items-center gap-3">
-          <Button
-            asChild
-            size="sm"
-            className="bg-[#262626] text-[#F1F1F1] hover:bg-[#262626]/90"
-          >
+        {/* CTA + tema */}
+        <div className="hidden md:flex items-center gap-1">
+          <ThemeToggle />
+          <Button asChild size="sm" className="ml-2">
             <a href="#contacto">Reservá asesoría</a>
           </Button>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden p-2 text-[#737373] hover:text-[#262626]"
-          onClick={() => setOpen(!open)}
-          aria-label="Menú"
-        >
-          {open ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        {/* Mobile: tema + menú */}
+        <div className="flex md:hidden items-center gap-0.5">
+          <ThemeToggle />
+          <button
+            type="button"
+            className="-mr-1 p-3 min-h-11 min-w-11 inline-flex items-center justify-center text-muted-foreground hover:text-foreground touch-manipulation"
+            onClick={() => setOpen(!open)}
+            aria-label="Menú"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -94,23 +96,19 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="md:hidden overflow-hidden bg-[#F1F1F1] border-b border-[rgba(38,38,38,0.12)] px-6 pb-5 flex flex-col gap-3"
+            className="md:hidden overflow-hidden bg-background border-b border-foreground/12 px-4 sm:px-6 pb-5 flex flex-col gap-0.5"
           >
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-[#737373] hover:text-[#262626] py-1 transition-colors"
+                className="text-sm text-muted-foreground hover:text-foreground py-3 min-h-11 flex items-center transition-colors touch-manipulation"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <Button
-              asChild
-              size="sm"
-              className="w-full mt-2 bg-[#262626] text-[#F1F1F1] hover:bg-[#262626]/90"
-            >
+            <Button asChild size="sm" className="w-full mt-2">
               <a href="#contacto" onClick={() => setOpen(false)}>
                 Reservá asesoría
               </a>

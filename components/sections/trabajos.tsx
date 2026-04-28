@@ -74,35 +74,35 @@ const cardVariants = {
 
 export function Trabajos() {
   return (
-    <section id="trabajos" className="py-20 px-6 bg-[#F1F1F1]">
+    <section id="trabajos" className="py-14 md:py-20 px-4 sm:px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12"
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
           <div className="max-w-xl">
-            <p className="text-xs uppercase tracking-widest text-[#737373] font-medium mb-3">
+            <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
               Nuestros trabajos
             </p>
-            <h2 className="text-3xl font-medium tracking-tight text-[#262626]">
+            <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground text-balance">
               Más de 10 empresas con resultados reales
             </h2>
           </div>
-          <p className="text-sm text-[#737373] max-w-xs">
+          <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
             Cada sistema fue construido desde cero para resolver un problema
             específico de negocio.
           </p>
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
+          viewport={{ once: true, margin: "-40px" }}
         >
           {PROJECTS.map(({ client, rubro, description, metric }) => (
             <motion.div
@@ -110,26 +110,26 @@ export function Trabajos() {
               variants={cardVariants}
               whileHover={{ y: -4 }}
               transition={{ duration: 0.2 }}
-              className="group border border-[rgba(38,38,38,0.12)] rounded-xl p-6 hover:border-[rgba(38,38,38,0.3)] bg-[#F1F1F1] cursor-pointer"
+              className="group border border-foreground/12 rounded-xl p-5 sm:p-6 hover:border-foreground/30 bg-background cursor-pointer touch-manipulation"
             >
               <div className="flex items-start justify-between mb-4">
                 <Badge
                   variant="outline"
-                  className="text-xs border-[rgba(38,38,38,0.2)] text-[#737373]"
+                  className="text-xs border-foreground/20 text-muted-foreground"
                 >
                   {rubro}
                 </Badge>
                 <ArrowUpRight
                   size={14}
-                  className="text-[#737373]/40 group-hover:text-[#262626] transition-colors"
+                  className="text-muted-foreground/40 group-hover:text-foreground transition-colors"
                 />
               </div>
-              <h3 className="text-sm font-medium text-[#262626] mb-2">{client}</h3>
-              <p className="text-xs text-[#737373] leading-relaxed mb-4">
+              <h3 className="text-sm font-medium text-foreground mb-2">{client}</h3>
+              <p className="text-xs text-muted-foreground leading-relaxed mb-4">
                 {description}
               </p>
-              <div className="pt-4 border-t border-[rgba(38,38,38,0.12)]">
-                <span className="text-xs font-medium text-[#262626]">{metric}</span>
+              <div className="pt-4 border-t border-foreground/12">
+                <span className="text-xs font-medium text-foreground">{metric}</span>
               </div>
             </motion.div>
           ))}

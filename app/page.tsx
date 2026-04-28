@@ -9,6 +9,7 @@ import { Team } from "@/components/sections/team"
 import { FAQ } from "@/components/sections/faq"
 import { Contact } from "@/components/sections/contact"
 import { Footer } from "@/components/sections/footer"
+import { CONTACT_EMAIL } from "@/lib/contact"
 
 const localBusinessSchema = {
   "@context": "https://schema.org",
@@ -17,7 +18,7 @@ const localBusinessSchema = {
   description:
     "Agencia de software y sistemas a medida para empresas. Desarrollamos sistemas web personalizados para automatizar y escalar tu negocio.",
   url: "https://misionary.dev",
-  email: "hola@misionary.dev",
+  email: CONTACT_EMAIL,
   address: {
     "@type": "PostalAddress",
     addressLocality: "Posadas",

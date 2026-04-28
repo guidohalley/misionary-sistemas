@@ -5,6 +5,7 @@ import { ArrowRight, Sparkles } from "lucide-react"
 import { motion } from "motion/react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { BackgroundBeams } from "@/components/ui/background-beams"
 
 const container = {
   hidden: {},
@@ -29,24 +30,18 @@ const CLIENTS = [
 
 export function Hero() {
   return (
-    <section className="relative pt-32 pb-20 px-6 overflow-hidden bg-[#F1F1F1]">
-      {/* Subtle grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(rgba(38,38,38,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(38,38,38,0.03) 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
-        }}
-      />
+    <section className="relative pt-[calc(4.75rem+env(safe-area-inset-top))] pb-14 px-4 sm:px-6 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 overflow-hidden bg-background">
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <BackgroundBeams className="opacity-[0.2] dark:opacity-[0.35]" />
+      </div>
 
-      <div className="relative max-w-6xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
         {/* Logo grande — solo mobile */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="block md:hidden mb-8"
+          className="block md:hidden mb-6 sm:mb-8 max-w-[min(100%,220px)]"
         >
           <Image
             src="https://cdn.misionary.misionary.com.ar/Logos%20Misionary_MI%20SIO%20NA%20RY-2.svg"
@@ -64,43 +59,36 @@ export function Hero() {
           initial="hidden"
           animate="show"
         >
-          {/* Eyebrow badge */}
           <motion.div variants={item}>
             <Badge
               variant="outline"
-              className="mb-6 gap-1.5 text-xs py-1 px-3 border-[rgba(38,38,38,0.2)] text-[#262626]"
+              className="mb-5 sm:mb-6 gap-1.5 text-xs py-1.5 px-2.5 sm:px-3 border-foreground/20 text-foreground max-w-full text-balance leading-snug"
             >
               <Sparkles size={11} />
               +10 empresas con sistemas activos en producción
             </Badge>
           </motion.div>
 
-          {/* H1 */}
           <motion.h1
             variants={item}
-            className="text-4xl sm:text-5xl lg:text-6xl font-medium tracking-tight text-[#262626] leading-[1.1] mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground leading-[1.12] sm:leading-[1.1] mb-5 sm:mb-6"
           >
             Sistemas a medida
             <br />
-            <span className="text-[#737373] font-normal">para tu empresa.</span>
+            <span className="text-muted-foreground font-normal">para tu empresa.</span>
           </motion.h1>
 
           <motion.p
             variants={item}
-            className="text-lg text-[#737373] max-w-xl leading-relaxed mb-10"
+            className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mb-8 sm:mb-10"
           >
             Dejá de operar en planillas y WhatsApp. Desarrollamos sistemas web
             propios que centralizan, automatizan y escalan con tu negocio —
             desde Posadas, Misiones para toda Argentina.
           </motion.p>
 
-          {/* CTAs */}
-          <motion.div variants={item} className="flex flex-col sm:flex-row gap-3">
-            <Button
-              asChild
-              size="lg"
-              className="bg-[#262626] text-[#F1F1F1] hover:bg-[#262626]/90"
-            >
+          <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+            <Button asChild size="lg" className="w-full sm:w-auto min-h-11 touch-manipulation">
               <a href="#contacto">
                 Reservá tu asesoría gratis
                 <ArrowRight size={16} />
@@ -110,22 +98,21 @@ export function Hero() {
               asChild
               variant="outline"
               size="lg"
-              className="border-[rgba(38,38,38,0.3)] text-[#262626] hover:bg-[rgba(38,38,38,0.04)] bg-transparent"
+              className="border-foreground/30 text-foreground hover:bg-foreground/[0.06] bg-transparent w-full sm:w-auto min-h-11 touch-manipulation"
             >
               <a href="#trabajos">Ver trabajos</a>
             </Button>
           </motion.div>
 
-          {/* Social proof */}
           <motion.div
             variants={item}
-            className="mt-10 flex items-center gap-3 text-sm text-[#737373]"
+            className="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:items-center gap-3 text-sm text-muted-foreground"
           >
             <div className="flex -space-x-2">
               {CLIENTS.map(({ initial }) => (
                 <div
                   key={initial}
-                  className="w-7 h-7 rounded-full bg-[#262626] text-[#F1F1F1] text-xs flex items-center justify-center font-medium border-2 border-[#F1F1F1]"
+                  className="w-7 h-7 rounded-full bg-foreground text-background text-xs flex items-center justify-center font-medium border-2 border-background"
                 >
                   {initial}
                 </div>

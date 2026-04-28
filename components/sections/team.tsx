@@ -34,26 +34,25 @@ const cardVariants = {
 
 export function Team() {
   return (
-    <section id="equipo" className="py-20 px-6 bg-[#F1F1F1]">
+    <section id="equipo" className="py-14 md:py-20 px-4 sm:px-6 bg-background">
       <div className="max-w-6xl mx-auto">
         <motion.div
-          className="max-w-xl mb-12"
+          className="max-w-xl mb-8 sm:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          <p className="text-xs uppercase tracking-widest text-[#737373] font-medium mb-3">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
             Equipo
           </p>
-          <h2 className="text-3xl font-medium tracking-tight text-[#262626]">
+          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground text-balance">
             Las personas detrás de Misionary
           </h2>
         </motion.div>
 
-        {/* Co-founders */}
         <motion.div
-          className="grid sm:grid-cols-2 gap-4 mb-10"
+          className="grid sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
           initial="hidden"
           whileInView="show"
@@ -63,26 +62,26 @@ export function Team() {
             <motion.div
               key={name}
               variants={cardVariants}
-              className="border border-[rgba(38,38,38,0.12)] rounded-xl p-6 bg-[#F1F1F1] hover:border-[rgba(38,38,38,0.3)] transition-colors"
+              className="border border-foreground/12 rounded-xl p-5 sm:p-6 bg-background hover:border-foreground/30 transition-colors"
             >
               <div className="flex items-start gap-4 mb-4">
                 <Avatar className="w-12 h-12 shrink-0">
-                  <AvatarFallback className="text-sm font-medium bg-[#262626] text-[#F1F1F1]">
+                  <AvatarFallback className="text-sm font-medium bg-foreground text-background">
                     {initials}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <p className="text-sm font-medium text-[#262626]">{name}</p>
-                  <p className="text-xs text-[#737373] leading-snug mt-0.5">{role}</p>
+                  <p className="text-sm font-medium text-foreground">{name}</p>
+                  <p className="text-xs text-muted-foreground leading-snug mt-0.5">{role}</p>
                 </div>
               </div>
-              <p className="text-sm text-[#737373] leading-relaxed mb-4">{bio}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{bio}</p>
               <div className="flex flex-wrap gap-1.5">
                 {tags.map((tag) => (
                   <Badge
                     key={tag}
                     variant="outline"
-                    className="text-xs py-0 border-[rgba(38,38,38,0.2)] text-[#737373]"
+                    className="text-xs py-0 border-foreground/20 text-muted-foreground"
                   >
                     {tag}
                   </Badge>
@@ -92,9 +91,8 @@ export function Team() {
           ))}
         </motion.div>
 
-        {/* Team grid */}
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
           initial="hidden"
           whileInView="show"
@@ -104,16 +102,16 @@ export function Team() {
             <motion.div
               key={name}
               variants={cardVariants}
-              className="flex flex-col items-center text-center gap-2 p-4 rounded-xl border border-[rgba(38,38,38,0.12)] hover:border-[rgba(38,38,38,0.25)] transition-colors"
+              className="flex flex-col items-center text-center gap-2 p-3 sm:p-4 rounded-xl border border-foreground/12 hover:border-foreground/25 transition-colors min-w-0"
             >
-              <Avatar className="w-10 h-10">
-                <AvatarFallback className="text-xs bg-[#E5E5E5] text-[#262626]">
+              <Avatar className="w-10 h-10 shrink-0">
+                <AvatarFallback className="text-xs bg-muted text-foreground">
                   {initials}
                 </AvatarFallback>
               </Avatar>
-              <div>
-                <p className="text-xs font-medium text-[#262626]">{name}</p>
-                <p className="text-xs text-[#737373]">{role}</p>
+              <div className="min-w-0 w-full">
+                <p className="text-xs font-medium text-foreground leading-tight text-balance">{name}</p>
+                <p className="text-xs text-muted-foreground">{role}</p>
               </div>
             </motion.div>
           ))}

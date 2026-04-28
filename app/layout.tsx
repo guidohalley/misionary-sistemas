@@ -1,13 +1,21 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist } from "next/font/google"
 import "./globals.css"
 import { Providers } from "./providers"
+import { themeInitScript } from "@/lib/theme"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   weight: ["400", "500"],
 })
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#F1F1F1",
+}
 
 export const metadata: Metadata = {
   title: "Sistemas a medida para tu empresa | Misionary",
@@ -55,10 +63,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es-AR">
+    <html lang="es-AR" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+      </head>
       <body
-        className={geistSans.variable}
+        className={`${geistSans.variable} min-h-dvh overflow-x-clip`}
         style={{ fontFamily: "var(--font-geist-sans), sans-serif" }}
+        suppressHydrationWarning
       >
         <Providers>{children}</Providers>
       </body>
