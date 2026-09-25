@@ -10,9 +10,9 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
-  { label: "Cómo funciona", href: "#como-funciona" },
   { label: "Trabajos", href: "#trabajos" },
-  { label: "Clientes", href: "#clientes" },
+  { label: "Integraciones", href: "#integraciones" },
+  { label: "Proceso", href: "#como-funciona" },
   { label: "Equipo", href: "#equipo" },
   { label: "FAQ", href: "#faq" },
 ]
@@ -23,71 +23,68 @@ export function Navbar() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12)
-    window.addEventListener("scroll", onScroll)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[env(safe-area-inset-top)]",
-        scrolled
-          ? "bg-background/95 backdrop-blur-sm border-b border-foreground/12 shadow-[0_1px_0_color-mix(in_oklab,var(--color-foreground)_8%,transparent)]"
+        "fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-colors duration-300",
+        scrolled || open
+          ? "border-b-[0.5px] border-foreground/15 bg-background/90 backdrop-blur-md"
           : "bg-transparent"
       )}
     >
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-        {/* Logo */}
+      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:h-16 sm:px-6">
         <Link href="/" className="flex items-center gap-2">
           <Image
             src="https://cdn.misionary.misionary.com.ar/Logos%20Misionary_M-10.svg"
             alt="Misionary"
-            width={32}
-            height={32}
+            width={28}
+            height={28}
             unoptimized
             priority
           />
-          <span className="text-sm font-medium text-foreground tracking-tight">
-            misionary<span className="text-muted-foreground font-normal">.dev</span>
+          <span className="text-sm font-medium tracking-tight">
+            misionary<span className="font-normal text-muted-foreground">.dev</span>
           </span>
         </Link>
 
-        {/* Desktop nav */}
-        <nav className="hidden md:flex items-center gap-6">
+        <nav className="hidden items-center gap-6 md:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* CTA + tema */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden items-center gap-1 md:flex">
           <ThemeToggle />
           <Button asChild size="sm" className="ml-2">
-            <a href="#contacto">Reservá asesoría</a>
+            <a href="#contacto">Reservá un diagnóstico</a>
           </Button>
         </div>
 
-        {/* Mobile: tema + menú */}
-        <div className="flex md:hidden items-center gap-0.5">
+        <div className="flex items-center gap-0.5 md:hidden">
           <ThemeToggle />
           <button
             type="button"
-            className="-mr-1 p-3 min-h-11 min-w-11 inline-flex items-center justify-center text-muted-foreground hover:text-foreground touch-manipulation"
+            className="-mr-1 inline-flex min-h-11 min-w-11 items-center justify-center p-3 text-muted-foreground hover:text-foreground touch-manipulation"
             onClick={() => setOpen(!open)}
             aria-label="Menú"
+            aria-expanded={open}
           >
             {open ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -96,21 +93,21 @@ export function Navbar() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
-            className="md:hidden overflow-hidden bg-background border-b border-foreground/12 px-4 sm:px-6 pb-5 flex flex-col gap-0.5"
+            className="flex flex-col gap-0.5 overflow-hidden px-4 pb-5 sm:px-6 md:hidden"
           >
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted-foreground hover:text-foreground py-3 min-h-11 flex items-center transition-colors touch-manipulation"
+                className="flex min-h-11 items-center py-3 text-sm text-muted-foreground transition-colors hover:text-foreground touch-manipulation"
                 onClick={() => setOpen(false)}
               >
                 {link.label}
               </a>
             ))}
-            <Button asChild size="sm" className="w-full mt-2">
+            <Button asChild size="sm" className="mt-2 w-full">
               <a href="#contacto" onClick={() => setOpen(false)}>
-                Reservá asesoría
+                Reservá un diagnóstico
               </a>
             </Button>
           </motion.div>

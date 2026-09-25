@@ -1,91 +1,58 @@
-"use client"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { SectionHeader } from "./section-header"
 
-import { motion } from "motion/react"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion"
-
-const FAQS = [
+export const FAQS = [
   {
     q: "¿Cuánto cuesta hacer un sistema para mi empresa?",
-    a: "El costo depende de la complejidad y las funcionalidades requeridas. Ofrecemos un diagnóstico gratuito donde evaluamos tu caso y te presentamos una propuesta con rangos claros. Los proyectos van desde sistemas simples de gestión hasta plataformas complejas con múltiples módulos.",
+    a: "Depende de la complejidad y los módulos. Hacemos un diagnóstico sin costo y te presentamos una propuesta con alcance y presupuesto claros.",
   },
   {
     q: "¿Necesito un sistema si mi empresa es pequeña?",
-    a: "Sí. De hecho, las empresas pequeñas que adoptan sistemas temprano escalan mucho más rápido. Un sistema bien diseñado te da control, reduce errores y te permite delegar sin perder visibilidad, sin importar el tamaño.",
+    a: "Sí. Un sistema bien diseñado te da control, reduce errores y te permite delegar sin perder visibilidad, sin importar el tamaño.",
   },
   {
-    q: "¿Qué diferencia hay entre un sistema web y una planilla de Excel?",
-    a: "Un sistema web centraliza la información en tiempo real, permite acceso desde cualquier dispositivo, automatiza procesos repetitivos, controla permisos por usuario y genera reportes automáticos. Excel no escala, no tiene control de acceso real y es altamente propenso a errores humanos.",
+    q: "¿Qué diferencia hay entre un sistema web y una planilla?",
+    a: "Un sistema centraliza la información, controla permisos por usuario, automatiza tareas repetitivas y se conecta con otras herramientas. Una planilla no escala ni tiene control de acceso real.",
   },
   {
-    q: "¿El sistema puede integrarse con WhatsApp o facturación electrónica?",
-    a: "Sí. Podemos integrar el sistema con la API de WhatsApp Business para notificaciones automáticas, con sistemas de facturación electrónica (AFIP), plataformas de pago y cualquier API externa que necesites.",
+    q: "¿Se puede integrar con las herramientas que ya uso?",
+    a: "Sí. Integramos con plataformas de pago, CRMs, catálogos externos, email marketing, analytics y cualquier servicio con API. Ver la sección Integraciones.",
   },
   {
     q: "¿Cuánto tiempo tarda en desarrollarse un sistema?",
-    a: "Depende de la complejidad. Un sistema de gestión inicial puede estar listo en 4 a 8 semanas. Los proyectos más grandes con múltiples módulos pueden tomar 3 a 6 meses. Trabajamos con entregas semanales para que nunca pierdas visibilidad del avance.",
+    a: "Depende del alcance. Trabajamos con entregas semanales para que veas y pruebes el avance desde las primeras semanas.",
   },
   {
-    q: "¿El sistema puede escalar si mi negocio crece?",
-    a: "Diseñamos todos nuestros sistemas con arquitectura modular y escalable. Podés empezar con los módulos que necesitás hoy y agregar funcionalidades en el futuro sin rehacer todo desde cero.",
+    q: "¿El sistema puede crecer con mi negocio?",
+    a: "Diseñamos con arquitectura modular: empezás con los módulos que necesitás hoy y sumás funcionalidades sin rehacer todo.",
   },
   {
-    q: "¿Puedo acceder al sistema desde el celular?",
-    a: "Todos los sistemas que desarrollamos son responsive y funcionan en cualquier dispositivo. También desarrollamos apps móviles nativas si el caso de uso lo requiere.",
+    q: "¿Puedo usarlo desde el celular?",
+    a: "Todos los sistemas son mobile-first y funcionan en cualquier dispositivo.",
   },
   {
     q: "¿Hay empresas de software en Misiones o Posadas?",
-    a: "Sí, somos Misionary. Estamos basados en Posadas, Misiones y trabajamos con empresas de todo el NEA y Argentina. Tener un equipo local significa comunicación directa, sin diferencias horarias y con contexto real de la región.",
+    a: "Sí, somos Misionary. Estamos en Posadas, Misiones, y trabajamos con empresas de todo el NEA y Argentina.",
   },
 ]
 
 export function FAQ() {
   return (
-    <section id="faq" className="py-14 md:py-20 px-4 sm:px-6 bg-foreground/[0.04]">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="max-w-xl mb-8 sm:mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
-            Preguntas frecuentes
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground text-balance">
-            Todo lo que necesitás saber antes de empezar
-          </h2>
-        </motion.div>
-
-        <motion.div
-          className="w-full max-w-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-        >
-          <Accordion type="single" collapsible className="w-full">
-            {FAQS.map(({ q, a }, i) => (
-              <AccordionItem
-                key={i}
-                value={`item-${i}`}
-                className="border-b border-foreground/12"
-              >
-                <AccordionTrigger className="min-h-12 py-4 text-left text-sm font-medium text-foreground hover:no-underline hover:text-foreground/80 text-balance gap-3 touch-manipulation [&>svg]:shrink-0">
-                  {q}
-                </AccordionTrigger>
-                <AccordionContent className="text-sm text-muted-foreground leading-relaxed pb-5 pr-1">
-                  {a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </motion.div>
+    <section id="faq" className="bg-foreground/[0.025] px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
+        <SectionHeader index="09" label="Preguntas frecuentes" title="Antes de empezar." className="md:block" />
+        <Accordion type="single" collapsible className="w-full border-t-[0.5px] border-foreground/15">
+          {FAQS.map(({ q, a }, i) => (
+            <AccordionItem key={q} value={`item-${i}`} className="border-b-[0.5px] border-foreground/15">
+              <AccordionTrigger className="min-h-12 gap-3 py-4 text-left text-sm font-medium text-balance hover:no-underline touch-manipulation [&>svg]:shrink-0">
+                {q}
+              </AccordionTrigger>
+              <AccordionContent className="pb-5 pr-1 text-sm leading-relaxed text-muted-foreground">
+                {a}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </div>
     </section>
   )
