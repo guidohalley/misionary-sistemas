@@ -1,96 +1,37 @@
-"use client"
-
-import Image from "next/image"
-import { ArrowRight, Sparkles } from "lucide-react"
-import { motion } from "motion/react"
+import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { BackgroundBeams } from "@/components/ui/background-beams"
-
-const container = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
-}
-
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-}
-
-const CLIENTS = [
-  { initial: "F", label: "Fénix" },
-  { initial: "H", label: "Hatapy" },
-  { initial: "C", label: "Coop. Fátima" },
-  { initial: "L", label: "Lowe" },
-]
+import { Showreel } from "@/components/showreel/showreel"
 
 export function Hero() {
   return (
-    <section className="relative pt-[calc(4.75rem+env(safe-area-inset-top))] pb-14 px-4 sm:px-6 sm:pt-28 sm:pb-16 md:pt-32 md:pb-20 overflow-hidden bg-background">
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <BackgroundBeams className="opacity-[0.2] dark:opacity-[0.35]" />
-      </div>
+    <section className="relative overflow-hidden px-4 pb-14 pt-[calc(5rem+env(safe-area-inset-top))] sm:px-6 sm:pt-28 md:pb-20 md:pt-32">
+      <div className="dot-grid pointer-events-none absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        {/* Logo grande — solo mobile */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-          className="block md:hidden mb-6 sm:mb-8 max-w-[min(100%,220px)]"
-        >
-          <Image
-            src="https://cdn.misionary.misionary.com.ar/Logos%20Misionary_MI%20SIO%20NA%20RY-2.svg"
-            alt="Misionary"
-            width={200}
-            height={60}
-            unoptimized
-            priority
-          />
-        </motion.div>
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-12">
+        <div>
+          <p className="mb-6 flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+            <span className="inline-flex items-center gap-1.5 rounded bg-lime px-1.5 py-0.5 text-lime-foreground">
+              <span className="size-1.5 rounded-full bg-lime-foreground" />
+              en producción
+            </span>
+            ar-northeast-1 / posadas
+          </p>
 
-        <motion.div
-          className="max-w-3xl"
-          variants={container}
-          initial="hidden"
-          animate="show"
-        >
-          <motion.div variants={item}>
-            <Badge
-              variant="outline"
-              className="mb-5 sm:mb-6 gap-1.5 text-xs py-1.5 px-2.5 sm:px-3 border-foreground/20 text-foreground max-w-full text-balance leading-snug"
-            >
-              <Sparkles size={11} />
-              +10 empresas con sistemas activos en producción
-            </Badge>
-          </motion.div>
-
-          <motion.h1
-            variants={item}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground leading-[1.12] sm:leading-[1.1] mb-5 sm:mb-6"
-          >
-            Sistemas a medida
+          <h1 className="mb-5 text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.6rem]">
+            Sistemas a medida,
             <br />
-            <span className="text-muted-foreground font-normal">para tu empresa.</span>
-          </motion.h1>
+            <span className="text-muted-foreground">conectados a tu negocio.</span>
+          </h1>
 
-          <motion.p
-            variants={item}
-            className="text-base sm:text-lg text-muted-foreground max-w-xl leading-relaxed mb-8 sm:mb-10"
-          >
-            Dejá de operar en planillas y WhatsApp. Desarrollamos sistemas web
-            propios que centralizan, automatizan y escalan con tu negocio —
-            desde Posadas, Misiones para toda Argentina.
-          </motion.p>
+          <p className="mb-8 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Dejá las planillas y el WhatsApp como sistema. Diseñamos, construimos y operamos
+            software propio que se integra con las herramientas que ya usás.
+          </p>
 
-          <motion.div variants={item} className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-            <Button asChild size="lg" className="w-full sm:w-auto min-h-11 touch-manipulation">
+          <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <Button asChild size="lg" className="min-h-11 w-full touch-manipulation sm:w-auto">
               <a href="#contacto">
-                Reservá tu asesoría gratis
+                Reservá un diagnóstico
                 <ArrowRight size={16} />
               </a>
             </Button>
@@ -98,29 +39,14 @@ export function Hero() {
               asChild
               variant="outline"
               size="lg"
-              className="border-foreground/30 text-foreground hover:bg-foreground/[0.06] bg-transparent w-full sm:w-auto min-h-11 touch-manipulation"
+              className="min-h-11 w-full border-foreground/25 bg-transparent touch-manipulation sm:w-auto"
             >
-              <a href="#trabajos">Ver trabajos</a>
+              <a href="#trabajos">Ver sistemas</a>
             </Button>
-          </motion.div>
+          </div>
+        </div>
 
-          <motion.div
-            variants={item}
-            className="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:items-center gap-3 text-sm text-muted-foreground"
-          >
-            <div className="flex -space-x-2">
-              {CLIENTS.map(({ initial }) => (
-                <div
-                  key={initial}
-                  className="w-7 h-7 rounded-full bg-foreground text-background text-xs flex items-center justify-center font-medium border-2 border-background"
-                >
-                  {initial}
-                </div>
-              ))}
-            </div>
-            <span>Fénix, Hatapy, Coop. Fátima, Lowe y más</span>
-          </motion.div>
-        </motion.div>
+        <Showreel />
       </div>
     </section>
   )

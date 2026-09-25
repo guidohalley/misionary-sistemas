@@ -1,139 +1,82 @@
-"use client"
+import { SystemDiagram } from "@/components/diagram/system-diagram"
+import { FenixSpecimen } from "@/components/specimens/specimens"
+import { byTipo } from "@/content/catalog"
+import { FENIX } from "@/content/diagramas"
+import { SectionHeader } from "./section-header"
+import { SystemsIndex } from "./systems-index"
 
-import { motion } from "motion/react"
-import { Badge } from "@/components/ui/badge"
-import { ArrowUpRight } from "lucide-react"
-
-const PROJECTS = [
-  {
-    client: "Fénix Comisiones",
-    rubro: "Inmobiliaria",
-    description:
-      "Sistema de gestión de comisiones, liquidaciones y seguimiento de operaciones para inmobiliaria con múltiples asesores.",
-    metric: "−70% tiempo en liquidaciones",
-  },
-  {
-    client: "Cooperativa Fátima",
-    rubro: "Cooperativa",
-    description:
-      "Sistema de gestión interna de socios, aportes y reportes financieros para una cooperativa regional.",
-    metric: "Digitalización completa",
-  },
-  {
-    client: "Hotel Grand Lago",
-    rubro: "Hospitalidad",
-    description:
-      "Sistema de reservas online, gestión de habitaciones y check-in digital para hotel boutique.",
-    metric: "Reservas 24/7 online",
-  },
-  {
-    client: "Sistema Prestamista",
-    rubro: "Fintech",
-    description:
-      "Plataforma de gestión de préstamos, cuotas y cobranza para prestamistas independientes y financieras.",
-    metric: "Control total de cartera",
-  },
-  {
-    client: "GreenSAP",
-    rubro: "Agtech",
-    description:
-      "Sistema de trazabilidad y gestión de producción agroindustrial con reportes de cumplimiento normativo.",
-    metric: "Trazabilidad end-to-end",
-  },
-  {
-    client: "Misionary",
-    rubro: "SaaS",
-    description:
-      "Plataforma interna de gestión de proyectos, clientes y facturación para la propia operación de Misionary.",
-    metric: "Infraestructura escalable",
-  },
-  {
-    client: "Recibito",
-    rubro: "Retail",
-    description:
-      "Sistema de punto de venta con comprobantes digitales, stock e historial de clientes para comercios.",
-    metric: "−80% errores de caja",
-  },
-  {
-    client: "Rutas Intacto",
-    rubro: "Logística",
-    description:
-      "Sistema de gestión logística con asignación de rutas, tracking de envíos y reportes de eficiencia.",
-    metric: "Rutas optimizadas en tiempo real",
-  },
+const FENIX_PIEZAS = [
+  { t: "Fénix Comisiones", d: "Comisiones, ventas, liquidaciones, caja y finanzas de la inmobiliaria." },
+  { t: "Web pública", d: "Catálogo con búsqueda y mapa, alimentado desde Tokko Broker." },
+  { t: "Operación de datos", d: "Misionary gestiona toda la data de la empresa, incluida la carga de propiedades." },
 ]
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" as const },
-  },
-}
-
 export function Trabajos() {
-  return (
-    <section id="trabajos" className="py-14 md:py-20 px-4 sm:px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <div className="max-w-xl">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
-              Nuestros trabajos
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground text-balance">
-              Más de 10 empresas con resultados reales
-            </h2>
-          </div>
-          <p className="text-sm text-muted-foreground max-w-xs leading-relaxed">
-            Cada sistema fue construido desde cero para resolver un problema
-            específico de negocio.
-          </p>
-        </motion.div>
+  const sitios = byTipo("sitio")
 
-        <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-40px" }}
-        >
-          {PROJECTS.map(({ client, rubro, description, metric }) => (
-            <motion.div
-              key={client}
-              variants={cardVariants}
-              whileHover={{ y: -4 }}
-              transition={{ duration: 0.2 }}
-              className="group border border-foreground/12 rounded-xl p-5 sm:p-6 hover:border-foreground/30 bg-background cursor-pointer touch-manipulation"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <Badge
-                  variant="outline"
-                  className="text-xs border-foreground/20 text-muted-foreground"
-                >
-                  {rubro}
-                </Badge>
-                <ArrowUpRight
-                  size={14}
-                  className="text-muted-foreground/40 group-hover:text-foreground transition-colors"
-                />
-              </div>
-              <h3 className="text-sm font-medium text-foreground mb-2">{client}</h3>
-              <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-                {description}
+  return (
+    <section id="trabajos" className="px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeader
+          index="04"
+          label="Trabajos"
+          title="Sistemas reales, en producción. Así están conectados."
+          description="Mostramos la arquitectura, no el producto de nuestros clientes: cada pantalla es un specimen con datos ficticios."
+        />
+
+        <article className="mb-16 md:mb-24">
+          <div className="mb-6 grid gap-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-start">
+            <div>
+              <p className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+                <span className="rounded bg-foreground px-1 py-px text-background">flagship</span>
+                inmobiliaria · ecosistema
               </p>
-              <div className="pt-4 border-t border-foreground/12">
-                <span className="text-xs font-medium text-foreground">{metric}</span>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              <h3 className="text-2xl font-medium tracking-tight">Ecosistema Fénix</h3>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                Un sistema interno, una web pública y un catálogo externo operando como una sola
+                pieza. Reproducí una ruta para ver cómo viaja la información.
+              </p>
+              <ul className="mt-5 divide-y-[0.5px] divide-foreground/15 border-y-[0.5px] border-foreground/15">
+                {FENIX_PIEZAS.map((p) => (
+                  <li key={p.t} className="grid grid-cols-[8.5rem_1fr] gap-3 py-2.5 text-sm">
+                    <span className="font-medium">{p.t}</span>
+                    <span className="text-muted-foreground">{p.d}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <FenixSpecimen />
+          </div>
+          <SystemDiagram diagram={FENIX} autoPlay="propiedad" storyKey="fenix" />
+        </article>
+
+        <div className="mb-16 md:mb-24">
+          <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+            Índice de sistemas
+          </p>
+          <SystemsIndex />
+        </div>
+
+        <div>
+          <div className="mb-4 flex items-end justify-between gap-4">
+            <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
+              Sitios y presencia web
+            </p>
+            <p className="hidden text-xs text-muted-foreground sm:block">
+              Sitios institucionales y landings, no sistemas de gestión.
+            </p>
+          </div>
+          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/10 sm:grid-cols-5">
+            {sitios.map((s) => (
+              <li key={s.slug} className="flex flex-col gap-1 bg-background px-3.5 py-3">
+                <span className="text-sm font-medium tracking-tight">{s.nombre}</span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
+                  {s.rubro}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   )
