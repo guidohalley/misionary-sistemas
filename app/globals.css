@@ -1,39 +1,48 @@
 @import "tailwindcss";
 
-@theme {
-  --color-background: #f1f1f1;
-  --color-foreground: #262626;
-  --color-muted: #e5e5e5;
-  --color-muted-foreground: #737373;
-  --color-border: #d8d8d8;
-  --color-input: #d8d8d8;
-  --color-ring: #262626;
-  --color-accent: #e5e5e5;
-  --color-accent-foreground: #262626;
-  --color-secondary: #e5e5e5;
-  --color-secondary-foreground: #262626;
+@custom-variant dark (&:where(.dark, .dark *));
 
-  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1 var(--delay, 0ms);
+@theme {
+  --color-background: #fafafa;
+  --color-foreground: #262626;
+  --color-muted: #ececec;
+  --color-muted-foreground: #6b6b6b;
+  --color-border: #d8d8d8;
+  --color-input: #d4d4d4;
+  --color-ring: #262626;
+  --color-accent: #ececec;
+  --color-accent-foreground: #262626;
+  --color-secondary: #ececec;
+  --color-secondary-foreground: #262626;
+  --color-panel: #ffffff;
+  --color-lime: #e3fc74;
+  --color-lime-foreground: #1c1c1c;
+  --color-ink: #161616;
+}
+
+@theme inline {
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, monospace;
 }
 
 .dark {
-  --color-background: #141414;
-  --color-foreground: #f5f5f5;
-  --color-muted: #262626;
-  --color-muted-foreground: #a3a3a3;
-  --color-border: #404040;
-  --color-input: #404040;
-  --color-ring: #f5f5f5;
-  --color-accent: #262626;
-  --color-accent-foreground: #f5f5f5;
-  --color-secondary: #262626;
-  --color-secondary-foreground: #f5f5f5;
+  --color-background: #121212;
+  --color-foreground: #f2f2f2;
+  --color-muted: #232323;
+  --color-muted-foreground: #9a9a9a;
+  --color-border: #3a3a3a;
+  --color-input: #3a3a3a;
+  --color-ring: #f2f2f2;
+  --color-accent: #232323;
+  --color-accent-foreground: #f2f2f2;
+  --color-secondary: #232323;
+  --color-secondary-foreground: #f2f2f2;
+  --color-panel: #181818;
 }
 
 @layer base {
   html {
     color-scheme: light;
-    scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     scroll-padding-top: calc(3.75rem + env(safe-area-inset-top));
@@ -50,30 +59,34 @@
   }
 
   * {
-    border-color: color-mix(in oklab, var(--color-foreground) 12%, transparent);
+    border-color: color-mix(in oklab, var(--color-foreground) 14%, transparent);
     box-sizing: border-box;
   }
 
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground antialiased font-sans;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-lime-foreground);
   }
 }
 
 @layer utilities {
-  .hero-grid-bg {
-    background-image: linear-gradient(
-        color-mix(in oklab, var(--color-foreground) 5%, transparent) 1px,
-        transparent 1px
-      ),
-      linear-gradient(
-        90deg,
-        color-mix(in oklab, var(--color-foreground) 5%, transparent) 1px,
-        transparent 1px
-      );
-    background-size: 48px 48px;
+  .dot-grid {
+    background-image: radial-gradient(
+      color-mix(in oklab, var(--color-foreground) 16%, transparent) 1px,
+      transparent 1px
+    );
+    background-size: 20px 20px;
+  }
+
+  .hairline {
+    border-width: 0.5px;
+    border-color: color-mix(in oklab, var(--color-foreground) 22%, transparent);
   }
 
   @keyframes accordion-down {
@@ -98,16 +111,20 @@
   .animate-accordion-up {
     animation: accordion-up 0.2s ease-out;
   }
-}
 
-@keyframes cell-ripple {
-  0% {
-    opacity: 0.4;
+  @keyframes edge-flow {
+    to {
+      stroke-dashoffset: -24;
+    }
   }
-  50% {
-    opacity: 0.8;
+  .edge-flow {
+    stroke-dasharray: 6 6;
+    animation: edge-flow 0.9s linear infinite;
   }
-  100% {
-    opacity: 0.4;
+
+  @media (prefers-reduced-motion: reduce) {
+    .edge-flow {
+      animation: none;
+    }
   }
 }

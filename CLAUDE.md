@@ -1,65 +1,77 @@
 # msnr-sistemas-landing
 
-Landing page de Misionary para el servicio de sistemas a medida.
+Landing page de Misionary para el servicio de sistemas a medida (misionary.dev).
 Repositorio bajo la org: https://github.com/misionary-dev
 
 ## Sobre Misionary
 - Software Factory en Posadas, Misiones, Argentina (ar-northeast-1)
-- Especialización: sistemas enterprise, alta disponibilidad, mobile-first
+- Especialización: sistemas a medida, integraciones, mobile-first
 - Integración de IA: RAG, NLP, extracción estructurada de datos
-- Referencia de confianza: +5 sistemas críticos en el Poder Judicial de Misiones
 - Cumplimiento: Ley de Integración y Regulación de la IA de Misiones
 - Contacto: devs@misionary.com
 - Web actual: misionary.com | Nueva: misionary.dev
 
 ## Stack del proyecto
-- Next.js 16 + React 19 + TypeScript
-- Tailwind CSS 4
+- Next.js 16 + React 19 + TypeScript (deploy OpenNext / Cloudflare)
+- Tailwind CSS 4 (tokens en app/globals.css)
 - shadcn/ui (Radix UI primitives, instalación manual)
 - motion v12 — import SIEMPRE desde "motion/react", NUNCA "framer-motion"
-- gsap + @gsap/react (useGSAP hook, nunca useEffect directo)
-- lenis (smooth scroll) — import desde "lenis/react", no "@studio-freight/react-lenis"
+- gsap + @gsap/react (useGSAP hook, nunca useEffect directo); plugins registrados en app/providers.tsx
+- lenis (smooth scroll) — import desde "lenis/react"
 - sonner (toasts del formulario de contacto)
-
-## Stack de producción Misionary (contexto general)
-- Frontend: Next.js, React, TypeScript
-- Backend: PHP 8.x (Laravel), Node.js, Prisma ORM
-- DB: PostgreSQL, MySQL
-- Infra: Vercel, Ubuntu/Debian, GitHub Actions CI/CD
-- AI tooling: Claude + Cursor en el flujo de desarrollo
+- Tipografía: IBM Plex Sans + IBM Plex Mono (next/font)
 
 ## Estructura del proyecto
-components/sections/   → una sección por archivo (navbar, hero, etc.)
-components/ui/         → primitivos shadcn
-components/reactbits/  → componentes instalados via jsrepo
-app/page.tsx           → ensambla todas las secciones
-app/providers.tsx      → Lenis ReactLenis root
-lib/utils.ts           → cn() helper
+content/catalog.ts        → ALLOWLIST única de clientes, sistemas, sitios y partners
+content/diagramas.ts      → grafos de arquitectura (nodos + edges + rutas) por sistema
+content/integraciones.ts  → carriles de integraciones y usos validados
+components/diagram/       → motor de grafos (Archify/Railway): canvas, geometría, rutas
+components/specimens/     → UI demo con datos ficticios por sistema
+components/showreel/      → showreel web de 15 s (GSAP, SVG)
+components/sections/      → una sección por archivo
+components/ui/            → primitivos shadcn
+app/page.tsx              → ensambla las secciones
+app/reel/page.tsx         → showreel a pantalla completa (noindex)
 
-## Secciones de la landing (en orden)
-01. Navbar — sticky, scroll-aware
-02. Hero — H1 SEO + 2 CTAs + social proof
-03. LogosStrip — clientes en gris
-04. Problem — 3 pain points
-05. HowItWorks — stepper horizontal (Pixa-style)
-06. Trabajos — grid portafolio
-07. Testimonials — masonry CSS columns
-08. Team — co-founders + equipo
-09. FAQ — Accordion shadcn
-10. Contact — form con sonner toast
-11. Footer — links internos SEO
+## Secciones de la landing (orden definitivo)
+01. Navbar
+02. Hero — H1 + CTAs + showreel
+03. Clientes — nombre (+ logo cuando exista), sin links
+04. Trabajos — Ecosistema Fénix (flagship) + índice de sistemas + sitios
+05. Integraciones — bus de servicios con usos validados + partner Botssy
+06. Problem
+07. HowItWorks — workflow en carriles (Cliente / Misionary / Plataformas)
+08. Team
+09. FAQ
+10. Contact
+11. Footer
+Testimonials: OCULTO (no renderizar hasta tener citas reales autorizadas).
 
-## Clientes reales (usar en contenido)
-Fénix Comisiones (Aarón Ortas), Sistema Escuela (Federico Iraola),
-Cooperativa Fátima, Centro Med, Hatapy, Lowe Petrovalle
+## Portfolio — reglas duras (Guido, 2026-09-25)
+- Solo existe lo que está en content/catalog.ts. Agregar = una entrada nueva ahí.
+- Sistemas: Fénix Comisiones + web pública Fénix (un solo ecosistema con Tokko Broker),
+  Escuela Alas, Cooperativa Fátima, Gymsoft / Neutron Gym, Intacto Welty (OT),
+  ERP Misionary (propio), Twenty CRM (plataforma).
+- Sitios: GreenSAP, Recibito, Hotel Grand Lago, Transrio Turismo, EnerBio, Intacto Welty Web,
+  AMID Misiones, Aaron Ortas, EPSA, Río Uruguay. Se muestran como sitios, no como sistemas.
+- VETADOS (ni card, ni logo, ni trust line, ni testimonio): Hatapy, Lowe Petrovalle,
+  Centro Med, Poder Judicial, Exclusivas Fénix, Prestamos Soft / "Sistema Prestamista",
+  AMID Pacientes, Rutas Intacto y cualquier otro fuera del catálogo.
+- Sin métricas ni claims de performance de clientes.
+- Sin links a sitios de clientes. Único link externo permitido: partners (Botssy).
+- Solo specimens en código con datos ficticios. Sin screenshots, embeds, iframes, logins ni
+  demos vivas de sistemas de clientes. Los specimens no replican la UI real del cliente.
+- Grafos: solo stack, roles e integraciones confirmados; sin hostnames, endpoints ni tablas.
+- Integraciones: dibujar edge solo si el uso está validado; el resto va como "disponible".
 
 ## Convenciones de animación
-- motion: whileInView + viewport={{ once: true }} en secciones
-- gsap: solo dentro de useGSAP(), registrar plugins una sola vez en providers.tsx
-- Lenis ya configurado como proveedor global en app/providers.tsx
-- Componentes animados siempre llevan "use client"
+- Cada animación explica un estado del sistema (rutas, nodos activos); nada decorativo
+- gsap solo dentro de useGSAP(); respetar prefers-reduced-motion
+- Componentes animados llevan "use client"; secciones estáticas quedan como RSC
 
 ## Estilo visual
-Flat, blanco, serio. Referencia: Linear.app, Vercel.com.
-Sin gradientes decorativos. Sin sombras pesadas.
-Bordes: 0.5px solid. Cards: rounded-xl. Weights: 400 y 500 únicamente.
+Consola operativa: blanco #fafafa, tinta #262626, lima #e3fc74 solo como acento funcional
+(ruta activa, foco, "en producción"), siempre como fill con texto oscuro.
+Grafos de nodos + edges en vez de cards genéricas. Dot-grid como estructura.
+Sin gradientes decorativos, sin sombras, sin 3D/shaders, sin íconos "AI" (Sparkles).
+Bordes 0.5px. Cards rounded-xl. Weights 400 y 500 únicamente.

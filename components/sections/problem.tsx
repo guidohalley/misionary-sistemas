@@ -1,76 +1,63 @@
-"use client"
-
-import { FileSpreadsheet, MessageCircleWarning, TrendingDown } from "lucide-react"
-import { motion } from "motion/react"
+import { SectionHeader } from "./section-header"
 
 const PAINS = [
   {
-    icon: FileSpreadsheet,
+    code: "ERR-01",
     title: "Información dispersa",
     description:
-      "Datos repartidos en planillas, WhatsApp y emails. Sin una sola fuente de verdad, las decisiones se toman a ciegas.",
+      "Datos repartidos en planillas, WhatsApp y mails. Sin una sola fuente de verdad, cada decisión se toma a ciegas.",
+    nodes: ["planilla", "chat", "mail"],
   },
   {
-    icon: MessageCircleWarning,
-    title: "Errores por procesos manuales",
+    code: "ERR-02",
+    title: "Procesos manuales",
     description:
-      "Cada tarea que depende de una persona para ejecutarse es un punto de falla. El error humano no escala.",
+      "Cada tarea que depende de que alguien se acuerde es un punto de falla. El error humano no escala.",
+    nodes: ["copiar", "pegar", "revisar"],
   },
   {
-    icon: TrendingDown,
-    title: "Imposible crecer sin orden",
+    code: "ERR-03",
+    title: "Herramientas sin conexión",
     description:
-      "Cuando el negocio crece, el caos operativo crece más rápido. Sin sistema propio, el crecimiento se vuelve en contra.",
+      "Cobros, catálogo, CRM y web viven separados. Crecer multiplica el trabajo en vez de ordenarlo.",
+    nodes: ["pagos", "web", "crm"],
   },
 ]
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.4, ease: "easeOut" as const },
-  },
-}
-
 export function Problem() {
   return (
-    <section className="py-14 md:py-20 px-4 sm:px-6 bg-background">
-      <div className="max-w-6xl mx-auto">
-        <motion.div
-          className="max-w-xl mb-8 sm:mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          <p className="text-xs uppercase tracking-widest text-muted-foreground font-medium mb-3">
-            El problema
-          </p>
-          <h2 className="text-2xl sm:text-3xl font-medium tracking-tight text-foreground text-balance">
-            ¿Seguís operando sin un sistema propio?
-          </h2>
-        </motion.div>
+    <section className="px-4 py-16 sm:px-6 md:py-24">
+      <div className="mx-auto max-w-6xl">
+        <SectionHeader
+          index="06"
+          label="El problema"
+          title="¿Tu empresa todavía opera sin sistema propio?"
+          description="Si te identificás con alguno de estos síntomas, el siguiente paso es un diagnóstico."
+        />
 
-        <motion.div
-          className="grid md:grid-cols-3 gap-px bg-foreground/12 rounded-xl overflow-hidden"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-40px" }}
-        >
-          {PAINS.map(({ icon: Icon, title, description }) => (
-            <motion.div
-              key={title}
-              variants={cardVariants}
-              className="bg-background p-5 sm:p-8 hover:bg-foreground/[0.04] transition-colors"
-            >
-              <Icon size={20} className="text-foreground mb-5" strokeWidth={1.5} />
-              <h3 className="text-sm font-medium text-foreground mb-2">{title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-            </motion.div>
+        <div className="grid gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/15 md:grid-cols-3">
+          {PAINS.map((p) => (
+            <div key={p.code} className="flex flex-col gap-5 bg-background p-5 sm:p-7">
+              <div className="flex items-center gap-2" aria-hidden>
+                {p.nodes.map((n, i) => (
+                  <span key={n} className="flex items-center gap-2">
+                    <span className="rounded-md border-[0.5px] border-dashed border-foreground/35 px-2 py-1 font-mono text-[10px] text-muted-foreground">
+                      {n}
+                    </span>
+                    {i < p.nodes.length - 1 && (
+                      <span className="font-mono text-[10px] text-foreground/35">✕</span>
+                    )}
+                  </span>
+                ))}
+              </div>
+              <div>
+                <p className="mb-2 font-mono text-[10px] tracking-[0.14em] text-muted-foreground">{p.code}</p>
+                <h3 className="mb-2 text-base font-medium">{p.title}</h3>
+                <p className="text-sm leading-relaxed text-muted-foreground">{p.description}</p>
+              </div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )
