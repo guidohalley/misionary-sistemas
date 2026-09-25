@@ -1,8 +1,13 @@
 "use client"
 
+import gsap from "gsap"
+import { MotionPathPlugin } from "gsap/MotionPathPlugin"
+import { useGSAP } from "@gsap/react"
 import { ReactLenis } from "lenis/react"
 import { Toaster } from "sonner"
 import { ThemeProvider, useTheme } from "@/components/theme-provider"
+
+gsap.registerPlugin(useGSAP, MotionPathPlugin)
 
 function ThemedToaster() {
   const { theme, mounted } = useTheme()
