@@ -6,9 +6,9 @@ import { SectionHeader } from "./section-header"
 import { SystemsIndex } from "./systems-index"
 
 const FENIX_PIEZAS = [
-  { t: "Fénix Comisiones", d: "Comisiones, ventas, liquidaciones, caja y finanzas de la inmobiliaria." },
-  { t: "Web pública", d: "Catálogo con búsqueda y mapa, alimentado desde Tokko Broker." },
-  { t: "Operación de datos", d: "Misionary gestiona toda la data de la empresa, incluida la carga de propiedades." },
+  { t: "Comisiones y caja", d: "Cada operación, comisión y liquidación de los asesores en un solo lugar." },
+  { t: "Web pública", d: "Se actualiza sola cuando se cargan propiedades en el portal que ya usan (Tokko)." },
+  { t: "Carga de datos", d: "Nuestro equipo carga y mantiene la información de la empresa, incluidas las propiedades." },
 ]
 
 export function Trabajos() {
@@ -20,21 +20,21 @@ export function Trabajos() {
         <SectionHeader
           index="04"
           label="Trabajos"
-          title="Sistemas reales, en producción. Así están conectados."
-          description="Mostramos la arquitectura, no el producto de nuestros clientes: cada pantalla es un specimen con datos ficticios."
+          title="Software a medida que ya usan empresas de acá."
+          description="Te mostramos ejemplos con datos ficticios: cómo quedaría tu operación, sin exponer información real de nuestros clientes."
         />
 
         <article className="mb-16 md:mb-24">
           <div className="mb-6 grid gap-6 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-start">
             <div>
               <p className="mb-2 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-                <span className="rounded bg-foreground px-1 py-px text-background">flagship</span>
-                inmobiliaria · ecosistema
+                <span className="rounded bg-foreground px-1 py-px text-background">caso destacado</span>
+                inmobiliaria
               </p>
-              <h3 className="text-2xl font-medium tracking-tight">Ecosistema Fénix</h3>
+              <h3 className="text-2xl font-medium tracking-tight">Fénix Inmobiliaria</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                Un sistema interno, una web pública y un catálogo externo operando como una sola
-                pieza. Reproducí una ruta para ver cómo viaja la información.
+                La gestión interna, la web y el portal de propiedades trabajan como una sola cosa.
+                Elegí un ejemplo y mirá cómo un dato pasa de la carga a la web y a comisiones.
               </p>
               <ul className="mt-5 divide-y-[0.5px] divide-foreground/15 border-y-[0.5px] border-foreground/15">
                 {FENIX_PIEZAS.map((p) => (
@@ -52,7 +52,7 @@ export function Trabajos() {
 
         <div className="mb-16 md:mb-24">
           <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
-            Índice de sistemas
+            Más casos
           </p>
           <SystemsIndex />
         </div>
@@ -63,7 +63,7 @@ export function Trabajos() {
               Sitios y presencia web
             </p>
             <p className="hidden text-xs text-muted-foreground sm:block">
-              Sitios institucionales y landings, no sistemas de gestión.
+              Sitios institucionales y landings que diseñamos y mantenemos.
             </p>
           </div>
           <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/10 sm:grid-cols-5">

@@ -12,9 +12,9 @@ export function Hero() {
           <p className="mb-6 flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
             <span className="inline-flex items-center gap-1.5 rounded bg-lime px-1.5 py-0.5 text-lime-foreground">
               <span className="size-1.5 rounded-full bg-lime-foreground" />
-              en producción
+              Posadas, Misiones
             </span>
-            ar-northeast-1 / posadas
+            Sistemas para empresas de la región
           </p>
 
           <h1 className="mb-5 text-balance text-4xl font-medium leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.6rem]">
@@ -24,8 +24,8 @@ export function Hero() {
           </h1>
 
           <p className="mb-8 max-w-md text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Dejá las planillas y el WhatsApp como sistema. Diseñamos, construimos y operamos
-            software propio que se integra con las herramientas que ya usás.
+            Dejá las planillas y el WhatsApp como sistema. Diseñamos, construimos y acompañamos el
+            software de tu empresa: todo en un solo lugar y conectado con lo que ya usás.
           </p>
 
           <div className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -41,7 +41,7 @@ export function Hero() {
               size="lg"
               className="min-h-11 w-full border-foreground/25 bg-transparent touch-manipulation sm:w-auto"
             >
-              <a href="#trabajos">Ver sistemas</a>
+              <a href="#trabajos">Ver casos reales</a>
             </Button>
           </div>
         </div>
