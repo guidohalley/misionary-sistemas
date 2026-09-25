@@ -1,0 +1,375 @@
+import type { Diagram } from "@/components/diagram/types"
+
+/**
+ * Grafos de arquitectura por sistema. Solo stack, roles e integraciones confirmados.
+ * Sin hostnames, endpoints ni nombres de tablas.
+ */
+
+export const FENIX: Diagram = {
+  slug: "fenix",
+  grid: { desktop: { cols: 6, rows: 4 }, mobile: { cols: 2, rows: 8 } },
+  lanes: [
+    { label: "Catálogo público", row: 0 },
+    { label: "Gestión interna", row: 2 },
+    { label: "Infra", row: 3 },
+  ],
+  nodes: [
+    {
+      id: "misionary",
+      kind: "actor",
+      label: "Misionary",
+      stack: "gestión de datos",
+      detalle: ["Data entry de propiedades", "Operación de toda la data de la empresa"],
+      desktop: { col: 0, row: 0 },
+      mobile: { col: 0, row: 0 },
+    },
+    {
+      id: "tokko",
+      kind: "ext",
+      label: "Tokko Broker",
+      stack: "catálogo inmobiliario",
+      desktop: { col: 1, row: 0 },
+      mobile: { col: 1, row: 0 },
+    },
+    {
+      id: "sync",
+      kind: "api",
+      label: "Sync de catálogo",
+      stack: "API · indexación",
+      desktop: { col: 2, row: 0 },
+      mobile: { col: 1, row: 1 },
+    },
+    {
+      id: "search",
+      kind: "data",
+      label: "Búsqueda",
+      stack: "Meilisearch",
+      desktop: { col: 3, row: 0 },
+      mobile: { col: 1, row: 2 },
+    },
+    {
+      id: "web",
+      kind: "app",
+      label: "Web pública",
+      stack: "Next 16 · MapLibre",
+      detalle: ["Catálogo de propiedades", "Mapa", "Búsqueda por código"],
+      desktop: { col: 4, row: 0 },
+      mobile: { col: 1, row: 3 },
+    },
+    {
+      id: "clientes",
+      kind: "actor",
+      label: "Clientes finales",
+      desktop: { col: 5, row: 0 },
+      mobile: null,
+    },
+    {
+      id: "asesores",
+      kind: "actor",
+      label: "Asesores",
+      stack: "y administración",
+      desktop: { col: 1, row: 2 },
+      mobile: { col: 1, row: 5 },
+    },
+    {
+      id: "comisiones",
+      kind: "app",
+      label: "Fénix Comisiones",
+      stack: "React 19 · Express 5",
+      detalle: ["Comisiones", "Ventas", "Liquidaciones", "Caja", "Finanzas"],
+      desktop: { col: 2, row: 2 },
+      mobile: { col: 0, row: 5 },
+    },
+    {
+      id: "pg",
+      kind: "data",
+      label: "PostgreSQL",
+      stack: "Prisma",
+      desktop: { col: 3, row: 2 },
+      mobile: { col: 0, row: 6 },
+    },
+    {
+      id: "railway",
+      kind: "infra",
+      label: "Railway",
+      stack: "APIs · búsqueda · bases de datos",
+      desktop: { col: 1, row: 3, span: 4 },
+      mobile: { col: 0, row: 7, span: 2 },
+    },
+  ],
+  edges: [
+    { id: "e1", from: "misionary", to: "tokko", kind: "ops", label: "carga" },
+    { id: "e2", from: "tokko", to: "sync", kind: "sync", label: "API Tokko" },
+    { id: "e3", from: "sync", to: "search", kind: "sync", label: "índice" },
+    { id: "e4", from: "search", to: "web", kind: "data", label: "búsqueda" },
+    { id: "e5", from: "clientes", to: "web", kind: "data", label: "consultas" },
+    {
+      id: "e6",
+      from: "misionary",
+      to: "comisiones",
+      kind: "ops",
+      label: "gestión de datos",
+      toShift: -0.25,
+      mobile: { fromShift: -0.2, toShift: -0.2 },
+    },
+    {
+      id: "e7",
+      from: "web",
+      to: "comisiones",
+      kind: "evento",
+      label: "integración",
+      toShift: 0.25,
+      mobile: { toShift: 0.25 },
+    },
+    { id: "e8", from: "asesores", to: "comisiones", kind: "data", label: "operaciones" },
+    { id: "e9", from: "comisiones", to: "pg", kind: "data" },
+  ],
+  routes: [
+    { id: "propiedad", label: "Propiedad nueva", edges: ["e1", "e2", "e3", "e4"] },
+    { id: "operacion", label: "Consulta → operación", edges: ["e5", "e7", "e8", "e9"] },
+    { id: "gestion", label: "Misionary opera", edges: ["e1", "e6", "e9"] },
+  ],
+}
+
+export const ESCUELA: Diagram = {
+  slug: "escuela-alas",
+  grid: { desktop: { cols: 4, rows: 2 }, mobile: { cols: 2, rows: 3 } },
+  nodes: [
+    { id: "equipo", kind: "actor", label: "Equipo escolar", desktop: { col: 0, row: 0 }, mobile: { col: 0, row: 0 } },
+    {
+      id: "app",
+      kind: "app",
+      label: "Sistema escolar",
+      stack: "Next 16",
+      detalle: ["Gestión académica y operativa"],
+      desktop: { col: 1, row: 0 },
+      mobile: { col: 1, row: 0 },
+    },
+    { id: "api", kind: "api", label: "API", stack: "Express · Zod", desktop: { col: 2, row: 0 }, mobile: { col: 1, row: 1 } },
+    { id: "db", kind: "data", label: "MySQL", stack: "Sequelize", desktop: { col: 3, row: 0 }, mobile: { col: 0, row: 1 } },
+    { id: "railway", kind: "infra", label: "Railway", stack: "API · base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
+  ],
+  edges: [
+    { id: "a", from: "equipo", to: "app", kind: "data", label: "uso diario" },
+    { id: "b", from: "app", to: "api", kind: "data", label: "HTTP" },
+    { id: "c", from: "api", to: "db", kind: "data", label: "consultas" },
+  ],
+  routes: [{ id: "dia", label: "Un día de gestión", edges: ["a", "b", "c"] }],
+}
+
+export const FATIMA: Diagram = {
+  slug: "cooperativa-fatima",
+  grid: { desktop: { cols: 4, rows: 3 }, mobile: { cols: 2, rows: 4 } },
+  nodes: [
+    { id: "compradores", kind: "actor", label: "Compradores", desktop: { col: 0, row: 0 }, mobile: null },
+    {
+      id: "tienda",
+      kind: "app",
+      label: "Tienda web",
+      stack: "Next 16",
+      detalle: ["Catálogo", "Pedidos"],
+      desktop: { col: 1, row: 0 },
+      mobile: { col: 0, row: 0 },
+    },
+    { id: "api", kind: "api", label: "API", stack: "NestJS · Prisma", desktop: { col: 2, row: 0 }, mobile: { col: 0, row: 1, span: 2 } },
+    { id: "pg", kind: "data", label: "PostgreSQL", desktop: { col: 3, row: 0 }, mobile: { col: 0, row: 2 } },
+    { id: "admin", kind: "actor", label: "Administración", desktop: { col: 0, row: 1 }, mobile: null },
+    {
+      id: "panel",
+      kind: "app",
+      label: "Panel de gestión",
+      stack: "admin",
+      detalle: ["Operación diaria de la cooperativa"],
+      desktop: { col: 1, row: 1 },
+      mobile: { col: 1, row: 0 },
+    },
+    { id: "r2", kind: "infra", label: "Cloudflare R2", stack: "media · CDN", desktop: { col: 3, row: 1 }, mobile: { col: 1, row: 2 } },
+    { id: "railway", kind: "infra", label: "Railway", stack: "API · base de datos", desktop: { col: 1, row: 2, span: 3 }, mobile: { col: 0, row: 3, span: 2 } },
+  ],
+  edges: [
+    { id: "a", from: "compradores", to: "tienda", kind: "data", label: "pedidos" },
+    { id: "b", from: "tienda", to: "api", kind: "data", label: "HTTP", mobile: { toShift: -0.25 } },
+    { id: "c", from: "admin", to: "panel", kind: "data", label: "gestión" },
+    { id: "d", from: "panel", to: "api", kind: "data", label: "HTTP", toShift: -0.25, mobile: { toShift: 0.25 } },
+    { id: "e", from: "api", to: "pg", kind: "data", mobile: { fromShift: -0.25 } },
+    { id: "f", from: "api", to: "r2", kind: "data", label: "media", fromShift: 0.25, mobile: { fromShift: 0.25 } },
+  ],
+  routes: [
+    { id: "pedido", label: "Un pedido", edges: ["a", "b", "e"] },
+    { id: "gestion", label: "Gestión interna", edges: ["c", "d", "e"] },
+  ],
+}
+
+export const GYM: Diagram = {
+  slug: "neutron-gym",
+  grid: { desktop: { cols: 4, rows: 3 }, mobile: { cols: 2, rows: 4 } },
+  nodes: [
+    {
+      id: "staff",
+      kind: "actor",
+      label: "Dueño y entrenadores",
+      detalle: ["Roles: Admin", "Dueño", "Entrenador", "Cliente", "Dispositivo"],
+      desktop: { col: 0, row: 0 },
+      mobile: null,
+    },
+    {
+      id: "panel",
+      kind: "app",
+      label: "Panel de gestión",
+      stack: "React · Vite",
+      detalle: ["Rutinas", "Socios"],
+      desktop: { col: 1, row: 0 },
+      mobile: { col: 0, row: 0 },
+    },
+    { id: "api", kind: "api", label: "API", stack: "Express · Prisma", desktop: { col: 2, row: 0 }, mobile: { col: 0, row: 1, span: 2 } },
+    { id: "pg", kind: "data", label: "PostgreSQL", desktop: { col: 3, row: 0 }, mobile: { col: 0, row: 2 } },
+    { id: "sala", kind: "actor", label: "Socios en sala", desktop: { col: 0, row: 1 }, mobile: null },
+    {
+      id: "tv",
+      kind: "app",
+      label: "Pantalla de sala",
+      stack: "TV · video en caché",
+      detalle: ["Rutinas en pantalla", "Video persistente en el dispositivo"],
+      desktop: { col: 1, row: 1 },
+      mobile: { col: 1, row: 0 },
+    },
+    { id: "s3", kind: "infra", label: "AWS S3", stack: "video de ejercicios", desktop: { col: 3, row: 1 }, mobile: { col: 1, row: 2 } },
+    { id: "railway", kind: "infra", label: "Railway", stack: "API · base de datos", desktop: { col: 1, row: 2, span: 3 }, mobile: { col: 0, row: 3, span: 2 } },
+  ],
+  edges: [
+    { id: "a", from: "staff", to: "panel", kind: "data", label: "arma rutinas" },
+    { id: "b", from: "panel", to: "api", kind: "data", label: "HTTP", mobile: { toShift: -0.25 } },
+    { id: "c", from: "api", to: "pg", kind: "data", mobile: { fromShift: -0.25 } },
+    { id: "d", from: "api", to: "tv", kind: "data", label: "rutinas", fromShift: -0.25, mobile: { fromShift: 0.25 } },
+    { id: "e", from: "s3", to: "api", kind: "sync", label: "video", toShift: 0.25, mobile: { toShift: 0.25 } },
+    { id: "f", from: "tv", to: "sala", kind: "data", label: "en pantalla" },
+  ],
+  routes: [
+    { id: "rutina", label: "Rutina a la TV", edges: ["a", "b", "c", "d", "f"] },
+    { id: "video", label: "Video de ejercicio", edges: ["e", "d", "f"] },
+  ],
+}
+
+export const INTACTO: Diagram = {
+  slug: "intacto-welty",
+  grid: { desktop: { cols: 4, rows: 2 }, mobile: { cols: 2, rows: 3 } },
+  nodes: [
+    { id: "equipo", kind: "actor", label: "Equipo de planta", desktop: { col: 0, row: 0 }, mobile: { col: 0, row: 0 } },
+    {
+      id: "apps",
+      kind: "app",
+      label: "Órdenes de trabajo",
+      stack: "Next · React",
+      detalle: ["Órdenes de trabajo", "Seguimiento"],
+      desktop: { col: 1, row: 0 },
+      mobile: { col: 1, row: 0 },
+    },
+    { id: "pg", kind: "data", label: "PostgreSQL", stack: "Prisma 7", desktop: { col: 2, row: 0 }, mobile: { col: 1, row: 1 } },
+    { id: "mono", kind: "infra", label: "Monorepo", stack: "Turborepo", desktop: { col: 3, row: 0 }, mobile: { col: 0, row: 1 } },
+    { id: "railway", kind: "infra", label: "Railway", stack: "apps · base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
+  ],
+  edges: [
+    { id: "a", from: "equipo", to: "apps", kind: "data", label: "carga OT" },
+    { id: "b", from: "apps", to: "pg", kind: "data", label: "estado" },
+  ],
+  routes: [{ id: "ot", label: "Una orden de trabajo", edges: ["a", "b"] }],
+}
+
+export const ERP: Diagram = {
+  slug: "erp-misionary",
+  grid: { desktop: { cols: 4, rows: 2 }, mobile: { cols: 2, rows: 3 } },
+  nodes: [
+    { id: "equipo", kind: "actor", label: "Equipo Misionary", desktop: { col: 0, row: 0 }, mobile: { col: 0, row: 0 } },
+    {
+      id: "app",
+      kind: "app",
+      label: "ERP Misionary",
+      stack: "React 19 · Vite",
+      detalle: ["Presupuestos", "Clientes y proveedores", "Servicios", "Productos"],
+      desktop: { col: 1, row: 0 },
+      mobile: { col: 1, row: 0 },
+    },
+    { id: "api", kind: "api", label: "API", stack: "Express · Prisma", desktop: { col: 2, row: 0 }, mobile: { col: 1, row: 1 } },
+    { id: "pg", kind: "data", label: "PostgreSQL 16", desktop: { col: 3, row: 0 }, mobile: { col: 0, row: 1 } },
+    { id: "railway", kind: "infra", label: "Railway", stack: "API · base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
+  ],
+  edges: [
+    { id: "a", from: "equipo", to: "app", kind: "data", label: "presupuesta" },
+    { id: "b", from: "app", to: "api", kind: "data", label: "HTTP" },
+    { id: "c", from: "api", to: "pg", kind: "data" },
+  ],
+  routes: [{ id: "presupuesto", label: "Un presupuesto", edges: ["a", "b", "c"] }],
+}
+
+export const PROCESO: Diagram = {
+  slug: "proceso",
+  grid: { desktop: { cols: 5, rows: 3 }, mobile: { cols: 2, rows: 1 } },
+  lanes: [
+    { label: "Cliente", row: 0 },
+    { label: "Misionary", row: 1 },
+    { label: "Plataformas", row: 2 },
+  ],
+  nodes: [
+    { id: "diag", kind: "step", label: "Diagnóstico", stack: "sin costo", desktop: { col: 0, row: 0 }, mobile: null },
+    { id: "aprueba", kind: "step", label: "Aprueba la propuesta", desktop: { col: 2, row: 0 }, mobile: null },
+    { id: "prueba", kind: "step", label: "Prueba cada entrega", desktop: { col: 3, row: 0 }, mobile: null },
+    { id: "opera", kind: "step", label: "Opera el sistema", desktop: { col: 4, row: 0 }, mobile: null },
+    { id: "relev", kind: "step", label: "Relevamiento", stack: "procesos y datos", desktop: { col: 0, row: 1 }, mobile: null },
+    { id: "presu", kind: "step", label: "Propuesta", stack: "prototipo y presupuesto", desktop: { col: 1, row: 1 }, mobile: null },
+    { id: "dev", kind: "step", label: "Desarrollo iterativo", stack: "entregas semanales", desktop: { col: 3, row: 1 }, mobile: null },
+    { id: "soporte", kind: "step", label: "Soporte continuo", desktop: { col: 4, row: 1 }, mobile: null },
+    {
+      id: "twenty",
+      kind: "ext",
+      label: "Twenty CRM",
+      stack: "self-hosted",
+      detalle: ["CRM de Misionary"],
+      desktop: { col: 0, row: 2 },
+      mobile: null,
+    },
+    {
+      id: "erp",
+      kind: "app",
+      label: "ERP Misionary",
+      stack: "presupuestos",
+      detalle: ["Presupuestos", "Clientes y proveedores", "Servicios", "Productos"],
+      desktop: { col: 1, row: 2 },
+      mobile: null,
+    },
+    {
+      id: "deploy",
+      kind: "infra",
+      label: "Producción",
+      stack: "Railway · Vercel · Cloudflare",
+      desktop: { col: 3, row: 2 },
+      mobile: null,
+    },
+  ],
+  edges: [
+    { id: "h1", from: "diag", to: "relev", kind: "data" },
+    { id: "h2", from: "relev", to: "presu", kind: "data" },
+    { id: "h9", from: "erp", to: "presu", kind: "data", label: "presupuesto" },
+    { id: "h3", from: "presu", to: "aprueba", kind: "data", toShift: -0.2 },
+    { id: "h4", from: "aprueba", to: "dev", kind: "data", fromShift: 0.2, toShift: -0.25 },
+    { id: "h5", from: "dev", to: "prueba", kind: "evento", label: "feedback", fromShift: 0.25, toShift: 0.25 },
+    { id: "h6", from: "dev", to: "deploy", kind: "data", label: "deploy" },
+    { id: "h7", from: "deploy", to: "opera", kind: "data", via: "h" },
+    { id: "h8", from: "opera", to: "soporte", kind: "evento" },
+  ],
+  routes: [
+    {
+      id: "entrega",
+      label: "Del diagnóstico a producción",
+      edges: ["h1", "h2", "h9", "h3", "h4", "h5", "h6", "h7", "h8"],
+    },
+  ],
+}
+
+export const DIAGRAMS = {
+  fenix: FENIX,
+  "escuela-alas": ESCUELA,
+  "cooperativa-fatima": FATIMA,
+  "neutron-gym": GYM,
+  "intacto-welty": INTACTO,
+  "erp-misionary": ERP,
+} as const
