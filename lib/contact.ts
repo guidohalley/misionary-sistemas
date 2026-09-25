@@ -1,6 +1,9 @@
 /** Misma fuente que msnr-landing (ContactSectionV2) */
 export const CONTACT_EMAIL = "marketing@misionary.com" as const
 
+/** E.164 sin + — visible en wa.me y schema telephone */
+export const CONTACT_TELEPHONE_E164 = "+5493764628681" as const
+
 const WHATSAPP_E164 = "5493764628681"
 
 const defaultWhatsappText =

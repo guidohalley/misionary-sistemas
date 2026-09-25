@@ -25,22 +25,23 @@ export const viewport: Viewport = {
   themeColor: "#FAFAFA",
 }
 
+const title = "Software factory y sistemas a medida | Posadas · Misionary"
 const description =
-  "Software factory en Posadas, Misiones. Diseñamos, construimos y operamos sistemas a medida conectados con las herramientas de tu empresa."
+  "misionary.dev es la software factory de Misionary en Posadas, Misiones: sistemas a medida e integraciones para PyMEs. No es la agencia de marketing de misionary.com."
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://misionary.dev"),
-  title: "Sistemas a medida para tu empresa | Misionary",
+  title,
   description,
   keywords: [
     "sistemas a medida",
+    "software factory Posadas",
+    "desarrollo de sistemas Misiones",
+    "integraciones Mercado Pago",
     "software para empresas Argentina",
-    "desarrollo de sistemas Posadas",
-    "software factory Misiones",
-    "integraciones de sistemas",
   ],
   openGraph: {
-    title: "Sistemas a medida para tu empresa | Misionary",
+    title,
     description,
     url: "https://misionary.dev",
     siteName: "Misionary",
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sistemas a medida para tu empresa | Misionary",
+    title,
     description,
     images: ["https://cdn.misionary.misionary.com.ar/Logos%20Misionary_MSNR-13.svg"],
   },
