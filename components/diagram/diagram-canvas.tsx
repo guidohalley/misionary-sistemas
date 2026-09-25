@@ -5,7 +5,7 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { cn } from "@/lib/utils"
 import { boxFor, canvasSize, edgeRouting, nodePos, routeEdge, type Viewport } from "./geometry"
-import { KIND_LABEL, type Diagram, type DiagramNode, type EdgeKind } from "./types"
+import { KIND_LABEL, KIND_TECH, type Diagram, type DiagramNode, type EdgeKind } from "./types"
 
 export type DiagramLevel = "map" | "read"
 
@@ -233,11 +233,11 @@ export function DiagramCanvas({
           >
             <span
               className={cn(
-                "flex items-center justify-between font-mono text-[9px] tracking-[0.14em] sm:text-[10px]",
+                "flex items-center justify-between font-mono text-[9px] uppercase tracking-[0.14em] sm:text-[10px]",
                 active ? "text-lime-foreground/70" : "text-muted-foreground"
               )}
             >
-              {KIND_LABEL[node.kind]}
+              {level === "read" ? KIND_TECH[node.kind] : KIND_LABEL[node.kind]}
               <span
                 className={cn(
                   "size-1.5 rounded-full",

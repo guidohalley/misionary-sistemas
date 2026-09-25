@@ -15,8 +15,13 @@ type Props = {
 
 const STEP_MS = 1000
 
+const LEVELS: { id: DiagramLevel; label: string }[] = [
+  { id: "map", label: "Vista simple" },
+  { id: "read", label: "Detalle técnico" },
+]
+
 export function SystemDiagram({ diagram, autoPlay, storyKey, className }: Props) {
-  const [level, setLevel] = useState<DiagramLevel>("read")
+  const [level, setLevel] = useState<DiagramLevel>("map")
   const [routeId, setRouteId] = useState<string | null>(null)
   const [step, setStep] = useState(-1)
   const [focusId, setFocusId] = useState<string | null>(null)
@@ -106,9 +111,9 @@ export function SystemDiagram({ diagram, autoPlay, storyKey, className }: Props)
   return (
     <div ref={root} className={cn("flex flex-col gap-4", className)}>
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Rutas">
+        <div className="flex flex-wrap items-center gap-2" role="group" aria-label="Ejemplos">
           <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-            Ruta
+            Ejemplo
           </span>
           {diagram.routes.map((r) => {
             const on = routeId === r.id
@@ -136,18 +141,18 @@ export function SystemDiagram({ diagram, autoPlay, storyKey, className }: Props)
           role="group"
           aria-label="Nivel de detalle"
         >
-          {(["map", "read"] as const).map((l) => (
+          {LEVELS.map(({ id: l, label }) => (
             <button
               key={l}
               type="button"
               onClick={() => setLevel(l)}
               aria-pressed={level === l}
               className={cn(
-                "rounded px-2 py-1 uppercase tracking-[0.14em] transition-colors",
+                "rounded px-2 py-1 tracking-[0.04em] transition-colors",
                 level === l ? "bg-foreground text-background" : "text-muted-foreground hover:text-foreground"
               )}
             >
-              {l}
+              {label}
             </button>
           ))}
         </div>
@@ -165,11 +170,14 @@ export function SystemDiagram({ diagram, autoPlay, storyKey, className }: Props)
         {focused ? (
           <div className="flex flex-col gap-1.5">
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
-              Full · {KIND_LABEL[focused.kind]}
+              Detalle · {KIND_LABEL[focused.kind]}
             </p>
             <p className="text-sm font-medium">{focused.label}</p>
             {focused.stack && (
-              <p className="font-mono text-xs text-muted-foreground">{focused.stack}</p>
+              <p className="font-mono text-xs text-muted-foreground">
+                <span className="text-foreground/60">Detalle técnico: </span>
+                {focused.stack}
+              </p>
             )}
             {focused.detalle && (
               <ul className="mt-1 flex flex-wrap gap-1.5">
@@ -186,7 +194,7 @@ export function SystemDiagram({ diagram, autoPlay, storyKey, className }: Props)
           </div>
         ) : (
           <p className="py-1.5 font-mono text-xs text-muted-foreground">
-            Tocá un nodo para ver su detalle, o reproducí una ruta.
+            Tocá una pieza para ver más, o reproducí el ejemplo paso a paso.
           </p>
         )}
       </div>
