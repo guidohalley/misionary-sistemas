@@ -32,32 +32,32 @@ export const DESTINOS: { id: Destino; label: string }[] = [
 export const CARRILES: Carril[] = [
   {
     id: "infra",
-    label: "Infra & cloud",
+    label: "Dónde alojamos y protegemos",
     servicios: [
-      { id: "aws", nombre: "AWS", usadoEn: ["neutron-gym"], nota: "S3 para video" },
-      { id: "cloudflare", nombre: "Cloudflare", usadoEn: ["cooperativa-fatima", "operacion-misionary"], nota: "R2 · CDN · Workers" },
+      { id: "aws", nombre: "AWS", usadoEn: ["neutron-gym"], nota: "videos de la app (S3)" },
+      { id: "cloudflare", nombre: "Cloudflare", usadoEn: ["cooperativa-fatima", "operacion-misionary"], nota: "fotos, videos y sitios web" },
       {
         id: "railway",
         nombre: "Railway",
         usadoEn: ["fenix", "escuela-alas", "cooperativa-fatima", "neutron-gym", "intacto-welty", "erp-misionary", "operacion-misionary"],
-        nota: "APIs, bases de datos y workers",
+        nota: "servidores y bases de datos",
       },
-      { id: "vercel", nombre: "Vercel", usadoEn: ["sitios"], nota: "Frontends y sitios" },
+      { id: "vercel", nombre: "Vercel", usadoEn: ["sitios"], nota: "sitios web" },
       { id: "hostinger", nombre: "Hostinger", usadoEn: ["operacion-misionary"], nota: "Dominios y correo" },
     ],
   },
   {
     id: "negocio",
-    label: "CRM · ERP · datos",
+    label: "Gestión y datos",
     servicios: [
       { id: "tokko", nombre: "Tokko Broker", usadoEn: ["fenix"], nota: "Catálogo de propiedades" },
-      { id: "twenty", nombre: "Twenty CRM", usadoEn: ["operacion-misionary"], nota: "Self-hosted" },
+      { id: "twenty", nombre: "Twenty CRM", usadoEn: ["operacion-misionary"], nota: "uso interno, self-hosted" },
       { id: "erp", nombre: "ERP Misionary", usadoEn: ["erp-misionary", "operacion-misionary"], nota: "Sistema propio" },
     ],
   },
   {
     id: "pagos",
-    label: "Pagos",
+    label: "Cobros y pagos",
     servicios: [
       { id: "mercado-pago", nombre: "Mercado Pago", usadoEn: [] },
       { id: "uala", nombre: "Ualá", usadoEn: [] },
@@ -65,7 +65,7 @@ export const CARRILES: Carril[] = [
   },
   {
     id: "comunicacion",
-    label: "Comunicación & automatización",
+    label: "Mensajes y automatización",
     servicios: [
       { id: "slack", nombre: "Slack", usadoEn: [] },
       { id: "resend", nombre: "Resend", usadoEn: [] },
@@ -73,14 +73,14 @@ export const CARRILES: Carril[] = [
         id: "botssy",
         nombre: "Botssy",
         usadoEn: [],
-        nota: "Partner · email marketing y automatización",
+        nota: "partner · email marketing y automatización",
         link: "https://botssy.com/",
       },
     ],
   },
   {
     id: "growth",
-    label: "Growth · analytics · ads",
+    label: "Medición y publicidad",
     servicios: [
       { id: "gsc", nombre: "Search Console", usadoEn: [] },
       { id: "ga4", nombre: "GA4", usadoEn: ["cooperativa-fatima"] },

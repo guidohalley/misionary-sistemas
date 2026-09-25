@@ -120,8 +120,8 @@ export function Integraciones() {
         <SectionHeader
           index="05"
           label="Integraciones"
-          title="Conectamos tu sistema con el stack que ya usás."
-          description="Infra, pagos, CRM/ERP, comunicación y growth. Tocá un servicio para ver dónde está en producción."
+          title="Tu gestión y las herramientas que ya usás, en el mismo flujo."
+          description="Pagos, catálogo, mensajes y reportes. Tocá una herramienta y mirá en qué proyectos la usamos."
         />
 
         <div ref={box} className="relative">
@@ -171,7 +171,7 @@ export function Integraciones() {
           )}
 
           <div className="relative grid gap-8 md:grid-cols-[minmax(0,13rem)_minmax(0,11rem)_minmax(0,1fr)] md:items-center md:gap-14">
-            <ul className="hidden flex-col gap-2 md:flex" aria-label="Sistemas">
+            <ul className="hidden flex-col gap-2 md:flex" aria-label="Proyectos">
               {DESTINOS.map((d) => {
                 const on = active.destinos.has(d.id)
                 return (
@@ -193,7 +193,6 @@ export function Integraciones() {
                       )}
                     >
                       {d.label}
-                      <span className="font-mono text-[9px] tracking-[0.14em] opacity-60">SYS</span>
                     </button>
                   </li>
                 )
@@ -204,9 +203,11 @@ export function Integraciones() {
               ref={hub}
               className="hidden flex-col gap-1 rounded-xl bg-foreground px-4 py-4 text-background md:flex"
             >
-              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-background/60">Hub</span>
-              <span className="text-base font-medium leading-tight">Integración a medida</span>
-              <span className="font-mono text-[10px] text-background/60">API · webhooks · sync</span>
+              <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-background/60">Conexión a medida</span>
+              <span className="text-base font-medium leading-tight">Unimos tu sistema con el resto</span>
+              <span className="font-mono text-[10px] text-background/60" title="API · webhooks · sync">
+                Detalle técnico: API · webhooks
+              </span>
             </div>
 
             <div className="flex flex-col gap-3">
@@ -257,7 +258,7 @@ export function Integraciones() {
                       {selectedService.nota ? ` · ${selectedService.nota}` : ""}
                       {" — "}
                       {selectedService.usadoEn.length > 0
-                        ? `en producción en ${selectedService.usadoEn
+                        ? `en uso en ${selectedService.usadoEn
                             .map((d) => DESTINOS.find((x) => x.id === d)?.label)
                             .join(", ")}`
                         : "disponible para integrar"}
@@ -267,10 +268,10 @@ export function Integraciones() {
               ))}
               <div className="flex flex-wrap items-center justify-between gap-3 px-1 font-mono text-[10px] text-muted-foreground">
                 <span className="flex items-center gap-3">
-                  <span className="inline-flex items-center gap-1.5"><span className="size-1.5 rounded-full bg-foreground" />en producción</span>
+                  <span className="inline-flex items-center gap-1.5"><span className="size-1.5 rounded-full bg-foreground" />en uso</span>
                   <span className="inline-flex items-center gap-1.5"><span className="size-1.5 rounded-full border border-current opacity-50" />disponible</span>
                 </span>
-                <span>+ APIs propias y otras</span>
+                <span>+ otras herramientas, a pedido</span>
               </div>
             </div>
           </div>

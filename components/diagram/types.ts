@@ -52,6 +52,16 @@ export type Diagram = {
 }
 
 export const KIND_LABEL: Record<NodeKind, string> = {
+  app: "App",
+  api: "Conexión",
+  data: "Datos",
+  ext: "Externo",
+  infra: "Servidor",
+  actor: "Personas",
+  step: "Paso",
+}
+
+export const KIND_TECH: Record<NodeKind, string> = {
   app: "APP",
   api: "API",
   data: "DATA",

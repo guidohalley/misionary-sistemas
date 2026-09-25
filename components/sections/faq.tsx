@@ -12,11 +12,11 @@ export const FAQS = [
   },
   {
     q: "¿Qué diferencia hay entre un sistema web y una planilla?",
-    a: "Un sistema centraliza la información, controla permisos por usuario, automatiza tareas repetitivas y se conecta con otras herramientas. Una planilla no escala ni tiene control de acceso real.",
+    a: "Un sistema junta toda la información en un solo lugar, define quién puede ver o cambiar cada cosa, hace solo las tareas repetitivas y se conecta con otras herramientas. Una planilla se desordena a medida que crecés.",
   },
   {
-    q: "¿Se puede integrar con las herramientas que ya uso?",
-    a: "Sí. Integramos con plataformas de pago, CRMs, catálogos externos, email marketing, analytics y cualquier servicio con API. Ver la sección Integraciones.",
+    q: "¿Se puede conectar con lo que ya uso?",
+    a: "Sí. Conectamos tu sistema con Mercado Pago, tu web, tus planillas de Excel, portales como Tokko, email marketing y las herramientas de medición que ya usás.",
   },
   {
     q: "¿Cuánto tiempo tarda en desarrollarse un sistema?",
@@ -24,11 +24,15 @@ export const FAQS = [
   },
   {
     q: "¿El sistema puede crecer con mi negocio?",
-    a: "Diseñamos con arquitectura modular: empezás con los módulos que necesitás hoy y sumás funcionalidades sin rehacer todo.",
+    a: "Sí. Lo armamos por partes: empezás con lo que necesitás hoy y sumás nuevas funciones sin rehacer todo.",
+  },
+  {
+    q: "¿Tengo que saber de tecnología?",
+    a: "No. Vos nos contás cómo funciona tu negocio; nosotros nos ocupamos del sistema y te explicamos todo en simple.",
   },
   {
     q: "¿Puedo usarlo desde el celular?",
-    a: "Todos los sistemas son mobile-first y funcionan en cualquier dispositivo.",
+    a: "Sí. Todos los sistemas están pensados primero para el celular y funcionan en cualquier dispositivo.",
   },
   {
     q: "¿Hay empresas de software en Misiones o Posadas?",

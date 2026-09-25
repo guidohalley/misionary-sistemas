@@ -72,7 +72,7 @@ function Rows({ rows }: { rows: { a: string; b: string; c: string; on?: boolean 
 
 export function FenixSpecimen() {
   return (
-    <Frame title="Liquidaciones · período demo">
+    <Frame title="Liquidaciones del mes · ejemplo">
       <Rows
         rows={[
           { a: "Asesor A", b: "Venta · Depto 2 amb · OP-0412", c: "liquidada", on: true },

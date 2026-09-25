@@ -4,27 +4,26 @@ import { SectionHeader } from "./section-header"
 const COFOUNDERS = [
   {
     name: "Guido Halley",
-    role: "Co-founder · Analista de Sistemas & Web Developer",
-    bio: "Diseña la arquitectura de cada sistema, de la base de datos a la infraestructura. Especialista en Next.js, TypeScript e integraciones.",
+    role: "Co-founder · Dirección técnica",
+    bio: "Lidera la estrategia y el diseño de cada sistema: entiende cómo funciona tu empresa, define qué construir y acompaña cada entrega hasta que el equipo lo usa todos los días.",
     initials: "GH",
-    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    tags: ["Sistemas a medida", "Integraciones", "Acompañamiento"],
+    stack: "Next.js · TypeScript · PostgreSQL",
   },
 ]
 
 const TEAM = [
-  { name: "Rodo", role: "Desarrollo", initials: "RO" },
-  { name: "Antonio", role: "Desarrollo", initials: "AN" },
-  { name: "Ana Bartholdy", role: "Operaciones", initials: "AB" },
-  { name: "Braian Gallegos", role: "Operaciones", initials: "BG" },
-  { name: "Lore Keo", role: "Operaciones", initials: "LK" },
-  { name: "Lucas Milde", role: "Operaciones", initials: "LM" },
+  { name: "Rodolfo", role: "Desarrollo de sistemas", initials: "RO" },
+  { name: "Lisandro Blanco", role: "Desarrollo de software", initials: "LB" },
+  { name: "Antonio", role: "Desarrollo de sistemas", initials: "AN" },
+  { name: "Tomas Roetti", role: "Sitios web", initials: "TR" },
 ]
 
 export function Team() {
   return (
     <section id="equipo" className="px-4 py-16 sm:px-6 md:py-24">
       <div className="mx-auto max-w-6xl">
-        <SectionHeader index="08" label="Equipo" title="Las personas detrás de cada nodo." />
+        <SectionHeader index="08" label="Equipo" title="Las personas que diseñan y acompañan tu proyecto." />
 
         <div className="grid gap-4 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
           {COFOUNDERS.map((c) => (
@@ -43,15 +42,19 @@ export function Team() {
               <p className="mb-4 text-sm leading-relaxed text-muted-foreground">{c.bio}</p>
               <ul className="flex flex-wrap gap-1.5">
                 {c.tags.map((t) => (
-                  <li key={t} className="rounded border-[0.5px] border-foreground/20 px-1.5 py-0.5 font-mono text-[10px] text-muted-foreground">
+                  <li key={t} className="rounded border-[0.5px] border-foreground/20 px-1.5 py-0.5 text-xs text-muted-foreground">
                     {t}
                   </li>
                 ))}
               </ul>
+              <p className="mt-3 font-mono text-[10px] text-muted-foreground">
+                <span className="text-foreground/60">Detalle técnico: </span>
+                {c.stack}
+              </p>
             </div>
           ))}
 
-          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/10 sm:grid-cols-3">
+          <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/10 sm:grid-cols-2">
             {TEAM.map((m) => (
               <li key={m.name} className="flex items-center gap-3 bg-background p-3.5">
                 <Avatar className="size-9 shrink-0">

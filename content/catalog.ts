@@ -20,7 +20,14 @@ export type CatalogEntry =
   | (Base & { tipo: "partner"; link: `https://${string}` })
 
 export const CATALOG = [
-  { slug: "fenix", tipo: "sistema", nivel: 1, nombre: "Fénix Inmobiliaria", rubro: "Inmobiliaria" },
+  {
+    slug: "fenix",
+    tipo: "sistema",
+    nivel: 1,
+    nombre: "Fénix Inmobiliaria",
+    rubro: "Inmobiliaria",
+    logo: "https://cdn.misionary.misionary.com.ar/brands/fenix-inmobiliaria.png",
+  },
   { slug: "escuela-alas", tipo: "sistema", nivel: 2, nombre: "Escuela Alas", rubro: "Educación" },
   { slug: "cooperativa-fatima", tipo: "sistema", nivel: 2, nombre: "Cooperativa Fátima", rubro: "Cooperativa" },
   { slug: "neutron-gym", tipo: "sistema", nivel: 2, nombre: "Neutron Gym", rubro: "Fitness" },
@@ -32,9 +39,21 @@ export const CATALOG = [
   { slug: "recibito", tipo: "sitio", nombre: "Recibito", rubro: "Comercio" },
   { slug: "hotel-grand-lago", tipo: "sitio", nombre: "Hotel Grand Lago", rubro: "Hotelería" },
   { slug: "transrio-turismo", tipo: "sitio", nombre: "Transrio Turismo", rubro: "Turismo" },
-  { slug: "enerbio", tipo: "sitio", nombre: "EnerBio", rubro: "Institucional" },
+  {
+    slug: "enerbio",
+    tipo: "sitio",
+    nombre: "EnerBio",
+    rubro: "Institucional",
+    logo: "https://cdn.misionary.misionary.com.ar/brands/enerbio.png",
+  },
   { slug: "intacto-welty-web", tipo: "sitio", nombre: "Intacto Welty", rubro: "Industria" },
-  { slug: "amid-misiones", tipo: "sitio", nombre: "AMID Misiones", rubro: "Institucional" },
+  {
+    slug: "amid-misiones",
+    tipo: "sitio",
+    nombre: "AMID Misiones",
+    rubro: "Institucional",
+    logo: "https://cdn.misionary.misionary.com.ar/brands/amid.png",
+  },
   { slug: "aaron-ortas", tipo: "sitio", nombre: "Aaron Ortas", rubro: "Inmobiliaria" },
   { slug: "epsa", tipo: "sitio", nombre: "EPSA", rubro: "Institucional" },
   { slug: "rio-uruguay", tipo: "sitio", nombre: "Río Uruguay", rubro: "Landing" },

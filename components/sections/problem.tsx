@@ -2,25 +2,25 @@ import { SectionHeader } from "./section-header"
 
 const PAINS = [
   {
-    code: "ERR-01",
-    title: "Información dispersa",
+    n: "1",
+    title: "Cada uno con su planilla",
     description:
-      "Datos repartidos en planillas, WhatsApp y mails. Sin una sola fuente de verdad, cada decisión se toma a ciegas.",
-    nodes: ["planilla", "chat", "mail"],
+      "Ventas en una planilla, stock en otra y pedidos por WhatsApp. Cuando necesitás un número, nadie tiene el mismo.",
+    tags: ["Planilla", "WhatsApp", "Mail"],
   },
   {
-    code: "ERR-02",
-    title: "Procesos manuales",
+    n: "2",
+    title: "Tareas que dependen de la memoria",
     description:
-      "Cada tarea que depende de que alguien se acuerde es un punto de falla. El error humano no escala.",
-    nodes: ["copiar", "pegar", "revisar"],
+      "Si alguien se olvida de pasar un dato, el error aparece recién a fin de mes, cuando ya es tarde.",
+    tags: ["Copiar y pegar", "Revisar a mano"],
   },
   {
-    code: "ERR-03",
-    title: "Herramientas sin conexión",
+    n: "3",
+    title: "Herramientas que no se hablan",
     description:
-      "Cobros, catálogo, CRM y web viven separados. Crecer multiplica el trabajo en vez de ordenarlo.",
-    nodes: ["pagos", "web", "crm"],
+      "Cobrás por un lado, publicás por otro y respondés consultas por otro. Crecer suma trabajo en vez de ordenarlo.",
+    tags: ["Cobros", "Web", "Consultas"],
   },
 ]
 
@@ -31,30 +31,27 @@ export function Problem() {
         <SectionHeader
           index="06"
           label="El problema"
-          title="¿Tu empresa todavía opera sin sistema propio?"
-          description="Si te identificás con alguno de estos síntomas, el siguiente paso es un diagnóstico."
+          title="¿Te suena alguna de estas situaciones?"
+          description="Si te pasa, el siguiente paso es un diagnóstico sin costo."
         />
 
         <div className="grid gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/15 md:grid-cols-3">
           {PAINS.map((p) => (
-            <div key={p.code} className="flex flex-col gap-5 bg-background p-5 sm:p-7">
-              <div className="flex items-center gap-2" aria-hidden>
-                {p.nodes.map((n, i) => (
-                  <span key={n} className="flex items-center gap-2">
-                    <span className="rounded-md border-[0.5px] border-dashed border-foreground/35 px-2 py-1 font-mono text-[10px] text-muted-foreground">
-                      {n}
-                    </span>
-                    {i < p.nodes.length - 1 && (
-                      <span className="font-mono text-[10px] text-foreground/35">✕</span>
-                    )}
-                  </span>
-                ))}
-              </div>
+            <div key={p.n} className="flex flex-col gap-5 bg-background p-5 sm:p-7">
+              <span className="flex size-8 items-center justify-center rounded-lg border-[0.5px] border-foreground/25 font-mono text-xs text-muted-foreground">
+                {p.n}
+              </span>
               <div>
-                <p className="mb-2 font-mono text-[10px] tracking-[0.14em] text-muted-foreground">{p.code}</p>
                 <h3 className="mb-2 text-base font-medium">{p.title}</h3>
                 <p className="text-sm leading-relaxed text-muted-foreground">{p.description}</p>
               </div>
+              <ul className="mt-auto flex flex-wrap gap-1.5" aria-label="Hoy se resuelve con">
+                {p.tags.map((t) => (
+                  <li key={t} className="rounded-md bg-foreground/[0.05] px-2 py-1 text-xs text-muted-foreground">
+                    {t}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
