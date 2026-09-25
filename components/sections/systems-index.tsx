@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { SystemDiagram } from "@/components/diagram/system-diagram"
 import { SPECIMENS } from "@/components/specimens/specimens"
@@ -96,7 +97,13 @@ export function SystemsIndex() {
                   )}
                 >
                   <span className="flex items-center gap-2 text-sm font-medium">
-                    {r.nombre}
+                    <Link
+                      href={`/casos/${r.slug}`}
+                      className={cn("underline-offset-2 hover:underline", on && "text-lime-foreground")}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {r.nombre}
+                    </Link>
                     {r.tipo === "propio" && (
                       <span
                         className={cn(
@@ -132,7 +139,11 @@ export function SystemsIndex() {
             <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
               {row.tipo === "propio" ? "Sistema propio de Misionary" : row.rubro}
             </p>
-            <h3 className="mt-1 text-xl font-medium tracking-tight">{row.nombre}</h3>
+            <h3 className="mt-1 text-xl font-medium tracking-tight">
+              <Link href={`/casos/${row.slug}`} className="underline-offset-2 hover:underline">
+                {row.nombre}
+              </Link>
+            </h3>
             <p className="mt-2 max-w-md text-sm leading-relaxed text-muted-foreground">{row.resumen}</p>
             <p className="mt-3 font-mono text-[11px] text-muted-foreground">
               <span className="text-foreground/60">Detalle técnico: </span>

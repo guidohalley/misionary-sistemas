@@ -10,11 +10,13 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 
 const NAV_LINKS = [
-  { label: "Trabajos", href: "#trabajos" },
-  { label: "Integraciones", href: "#integraciones" },
-  { label: "Proceso", href: "#como-funciona" },
-  { label: "Equipo", href: "#equipo" },
-  { label: "FAQ", href: "#faq" },
+  { label: "Guías", href: "/guias" },
+  { label: "Casos", href: "/casos" },
+  { label: "Trabajos", href: "/#trabajos" },
+  { label: "Integraciones", href: "/#integraciones" },
+  { label: "Proceso", href: "/#como-funciona" },
+  { label: "Equipo", href: "/#equipo" },
+  { label: "FAQ", href: "/#faq" },
 ]
 
 export function Navbar() {
@@ -53,21 +55,31 @@ export function Navbar() {
         </Link>
 
         <nav className="hidden items-center gap-6 md:flex">
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {link.label}
-            </a>
-          ))}
+          {NAV_LINKS.map((link) =>
+            link.href.startsWith("/") && !link.href.startsWith("/#") ? (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {link.label}
+              </a>
+            )
+          )}
         </nav>
 
         <div className="hidden items-center gap-1 md:flex">
           <ThemeToggle />
           <Button asChild size="sm" className="ml-2">
-            <a href="#contacto">Reservá un diagnóstico</a>
+            <Link href="/#contacto">Reservá un diagnóstico</Link>
           </Button>
         </div>
 
@@ -95,20 +107,31 @@ export function Navbar() {
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="flex flex-col gap-0.5 overflow-hidden px-4 pb-5 sm:px-6 md:hidden"
           >
-            {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="flex min-h-11 items-center py-3 text-sm text-muted-foreground transition-colors hover:text-foreground touch-manipulation"
-                onClick={() => setOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
+            {NAV_LINKS.map((link) =>
+              link.href.startsWith("/") && !link.href.startsWith("/#") ? (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex min-h-11 items-center py-3 text-sm text-muted-foreground transition-colors hover:text-foreground touch-manipulation"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="flex min-h-11 items-center py-3 text-sm text-muted-foreground transition-colors hover:text-foreground touch-manipulation"
+                  onClick={() => setOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )
+            )}
             <Button asChild size="sm" className="mt-2 w-full">
-              <a href="#contacto" onClick={() => setOpen(false)}>
+              <Link href="/#contacto" onClick={() => setOpen(false)}>
                 Reservá un diagnóstico
-              </a>
+              </Link>
             </Button>
           </motion.div>
         )}
