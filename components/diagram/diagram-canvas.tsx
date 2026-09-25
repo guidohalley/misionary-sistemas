@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { useGSAP } from "@gsap/react"
 import { cn } from "@/lib/utils"
@@ -45,6 +45,15 @@ export function DiagramCanvas({
   const scope = useRef<HTMLDivElement>(null)
   const paths = useRef<Record<string, SVGPathElement | null>>({})
   const dot = useRef<SVGCircleElement>(null)
+  const [scale, setScale] = useState(0)
+
+  useEffect(() => {
+    const el = scope.current
+    if (!el) return
+    const ro = new ResizeObserver(([e]) => setScale(e.contentRect.width / w))
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [w])
 
   const visibleNodes = diagram.nodes
     .map((node) => {
@@ -179,7 +188,7 @@ export function DiagramCanvas({
 
       {level === "read" &&
         edges
-          .filter(({ edge }) => edge.label)
+          .filter(({ edge, room }) => edge.label && scale > 0 && edge.label.length * 6.2 + 12 <= room * scale)
           .map(({ edge, mid }) => (
             <span
               key={`label-${edge.id}`}

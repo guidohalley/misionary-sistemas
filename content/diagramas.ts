@@ -121,7 +121,7 @@ export const FENIX: Diagram = {
       toShift: 0.25,
       mobile: { toShift: 0.25 },
     },
-    { id: "e8", from: "asesores", to: "comisiones", kind: "data", label: "operaciones" },
+    { id: "e8", from: "asesores", to: "comisiones", kind: "data", label: "operación" },
     { id: "e9", from: "comisiones", to: "pg", kind: "data" },
   ],
   routes: [

@@ -6,7 +6,7 @@ export type Box = { x: number; y: number; w: number; h: number }
 type Point = { x: number; y: number }
 
 const METRICS = {
-  desktop: { colW: 200, rowH: 108, nodeH: 66, padX: 14 },
+  desktop: { colW: 200, rowH: 108, nodeH: 66, padX: 22 },
   mobile: { colW: 170, rowH: 104, nodeH: 74, padX: 10 },
 } as const
 
@@ -99,5 +99,7 @@ export function routeEdge(a: Box, b: Box, routing: EdgeRouting) {
     x: (points[1].x + points[2].x) / 2,
     y: (points[1].y + points[2].y) / 2,
   }
-  return { d, mid, end: points[points.length - 1], start: points[0] }
+  const horizontal = Math.abs(points[1].y - points[2].y) < 1 && via === "h"
+  const room = horizontal ? Math.abs(points[3].x - points[0].x) : Infinity
+  return { d, mid, end: points[points.length - 1], start: points[0], room }
 }

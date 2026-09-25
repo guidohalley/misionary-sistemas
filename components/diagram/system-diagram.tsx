@@ -74,12 +74,13 @@ export function SystemDiagram({ diagram, autoPlay, storyKey, className }: Props)
     const edgesOn = new Set<string>()
     const nodesOn = new Set<string>()
     if (route && step >= 0) {
-      route.edges.slice(0, step + 1).forEach((id) => {
+      const done = step >= route.edges.length
+      route.edges.slice(0, step + 1).forEach((id, i) => {
         const e = diagram.edges.find((x) => x.id === id)
         if (!e) return
         edgesOn.add(e.id)
-        nodesOn.add(e.from)
-        nodesOn.add(e.to)
+        if (!done || i === route.edges.length - 1) nodesOn.add(e.to)
+        if (!done) nodesOn.add(e.from)
       })
     }
     return { activeEdges: edgesOn, activeNodes: nodesOn }
