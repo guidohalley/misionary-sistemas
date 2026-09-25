@@ -46,7 +46,7 @@ export function Footer() {
           </nav>
         </div>
         <div className="flex flex-col justify-between gap-2 border-t-[0.5px] border-foreground/15 pt-6 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground sm:flex-row">
-          <p>© {new Date().getFullYear()} Misionary · ar-northeast-1 / posadas</p>
+          <p>© {new Date().getFullYear()} Misionary · Posadas, Misiones</p>
           <p className="normal-case tracking-normal">{CONTACT_EMAIL}</p>
         </div>
       </div>

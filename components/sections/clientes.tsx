@@ -10,7 +10,7 @@ export function Clientes() {
         <p className="mb-6 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-muted-foreground">
           <span className="text-foreground">03</span>
           <span className="h-px w-6 bg-foreground/25" />
-          Empresas que operan con Misionary
+          Empresas que confían en nosotros
         </p>
         <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/10 md:grid-cols-7">
           {clients.map((c) => (
