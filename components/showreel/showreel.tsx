@@ -27,29 +27,29 @@ const NODES: ReelNode[] = [
   { id: "app", kind: "APP", label: "web + mobile", cx: 400, cy: 220 },
   { id: "api", kind: "API", label: "núcleo", cx: 640, cy: 360 },
   { id: "data", kind: "DATA", label: "postgres", cx: 880, cy: 220 },
-  { id: "ext", kind: "EXT", label: "pagos · crm", cx: 1110, cy: 360 },
+  { id: "ext", kind: "EXT", label: "pagos · crm", cx: 1080, cy: 360 },
   { id: "infra", kind: "INFRA", label: "cloud", cx: 640, cy: 540 },
 ]
 const EDGES = [
   "M170 324 V220 H300",
   "M500 220 H600 V324",
   "M680 324 V220 H780",
-  "M980 220 H1110 V324",
-  "M740 360 H1010",
+  "M980 220 H1080 V324",
+  "M740 360 H980",
   "M640 396 V504",
 ]
 
 const TICKERS = [
   { y: 150, dir: -1, items: ["AWS", "Cloudflare", "Railway", "Vercel", "Hostinger", "Tokko Broker", "Twenty CRM", "ERP Misionary"] },
-  { y: 580, dir: 1, items: ["Mercado Pago", "Ualá", "Slack", "Resend", "Botssy", "Mercado Pago", "Ualá", "Slack"] },
-  { y: 648, dir: -1, items: ["GA4", "PostHog", "Search Console", "Meta Pixel", "Meta Business", "TikTok", "Pinterest", "Snapchat"] },
+  { y: 560, dir: 1, items: ["Mercado Pago", "Ualá", "Slack", "Resend", "Botssy", "Webhooks", "APIs REST", "y otras"] },
+  { y: 622, dir: -1, items: ["GA4", "PostHog", "Search Console", "Meta Pixel", "Meta Business", "TikTok", "Pinterest", "Snapchat"] },
 ]
 const CONNECTORS = [
   "M560 318 V250 H300 V172",
   "M640 318 V172",
   "M720 318 V250 H980 V172",
-  "M580 402 V480 H400 V558",
-  "M700 402 V480 H880 V558",
+  "M580 402 V470 H400 V538",
+  "M700 402 V470 H880 V538",
 ]
 
 const CUTS = [
@@ -112,9 +112,16 @@ export function Showreel({ chrome = true, className }: Props) {
         },
       })
       tlRef.current = tl
+      if (!chrome) {
+        // Handle para exportar el reel cuadro a cuadro desde /reel.
+        ;(window as unknown as { __misionaryReel?: gsap.core.Timeline }).__misionaryReel = tl
+      }
+
+      gsap.set(".r-cam", { svgOrigin: "640 360" })
+      gsap.set(".r-node, .r-hub, .r-endnode", { transformOrigin: "50% 50%" })
+      gsap.set(".r-strike, .r-hl, .r-underline", { transformOrigin: "0% 50%" })
 
       tl.set(".r-scene", { autoAlpha: 0 }, 0)
-        .set(".r-fade", { autoAlpha: 0 }, 0)
         .set(".r-grid", { opacity: 0 }, 0)
 
       // 01 — boot
@@ -142,21 +149,21 @@ export function Showreel({ chrome = true, className }: Props) {
         .fromTo(
           ".r-strike",
           { scaleX: 0 },
-          { scaleX: 1, duration: 0.28, stagger: 0.14, ease: "power2.inOut", transformOrigin: "0% 50%" },
+          { scaleX: 1, duration: 0.28, stagger: 0.14, ease: "power2.inOut" },
           2.75
         )
         .to(".r-word", { y: -130, duration: 0.4, stagger: 0.06, ease: "power3.in" }, 3.45)
         .to(".r-strike", { opacity: 0, duration: 0.2 }, 3.55)
         .fromTo(
           ".r-hl",
-          { scaleX: 0, scaleY: 1 },
-          { scaleX: 1, duration: 0.38, ease: "expo.inOut", transformOrigin: "0% 50%" },
+          { scaleX: 0, attr: { x: 170, y: 262, width: 940, height: 196 } },
+          { scaleX: 1, duration: 0.38, ease: "expo.inOut" },
           3.8
         )
         .fromTo(".r-big", { y: 210 }, { y: 0, duration: 0.55, ease: "expo.out" }, 4.0)
         .to(".r-big", { y: -210, duration: 0.3, ease: "power3.in" }, 4.7)
-        .to(".r-hl", { scaleY: 0.02, duration: 0.25, ease: "power3.in", transformOrigin: "50% 50%" }, 4.78)
-        .to(".r-hl", { scaleX: 0.004, duration: 0.25, ease: "power3.in", transformOrigin: "50% 50%" }, 5.0)
+        .to(".r-hl", { attr: { y: 358, height: 4 }, duration: 0.25, ease: "power3.in" }, 4.78)
+        .to(".r-hl", { attr: { x: 636, width: 8 }, duration: 0.25, ease: "power3.in" }, 5.0)
         .set(".r-s2", { autoAlpha: 0 }, 5.25)
 
       // 03 — arquitectura
@@ -165,13 +172,13 @@ export function Showreel({ chrome = true, className }: Props) {
         .fromTo(
           ".r-cam",
           { scale: 1.3 },
-          { scale: 1, duration: 3.2, ease: "power2.inOut", svgOrigin: "640 360" },
+          { scale: 1, duration: 3.2, ease: "power2.inOut" },
           5.2
         )
         .fromTo(
           ".r-node",
           { opacity: 0, scale: 0.55 },
-          { opacity: 1, scale: 1, duration: 0.5, stagger: 0.11, ease: "back.out(1.7)", transformOrigin: "50% 50%" },
+          { opacity: 1, scale: 1, duration: 0.5, stagger: 0.11, ease: "back.out(1.7)" },
           5.25
         )
         .fromTo(
@@ -200,9 +207,9 @@ export function Showreel({ chrome = true, className }: Props) {
 
       // 04 — integraciones
       tl.call(setScene("04 · INTEGRACIONES"), [], 8.4)
-        .to(".r-cam", { scale: 0.62, opacity: 0.12, duration: 0.5, ease: "power3.inOut", svgOrigin: "640 360" }, 8.35)
+        .to(".r-cam", { scale: 0.62, opacity: 0.12, duration: 0.5, ease: "power3.inOut" }, 8.35)
         .set(".r-s4", { autoAlpha: 1 }, 8.4)
-        .fromTo(".r-hub", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2)", transformOrigin: "50% 50%" }, 8.5)
+        .fromTo(".r-hub", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.45, ease: "back.out(2)" }, 8.5)
         .fromTo(".r-ticker", { opacity: 0 }, { opacity: 1, duration: 0.3, stagger: 0.08 }, 8.55)
       TICKERS.forEach((row, i) => {
         tl.fromTo(
@@ -239,9 +246,9 @@ export function Showreel({ chrome = true, className }: Props) {
       tl.call(setScene("06 · MISIONARY"), [], 13.2)
         .set(".r-s6", { autoAlpha: 1 }, 13.2)
         .fromTo(".r-mark-clip", { attr: { width: 0 } }, { attr: { width: 900 }, duration: 0.6, ease: "expo.out" }, 13.2)
-        .fromTo(".r-underline", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.inOut", transformOrigin: "0% 50%" }, 13.55)
+        .fromTo(".r-underline", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "expo.inOut" }, 13.55)
         .fromTo(".r-tagline", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4 }, 13.75)
-        .fromTo(".r-endnode", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, stagger: 0.08, ease: "back.out(2)", transformOrigin: "50% 50%" }, 13.9)
+        .fromTo(".r-endnode", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.3, stagger: 0.08, ease: "back.out(2)" }, 13.9)
         .fromTo(".r-blackout", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "none" }, 14.6)
         .set({}, {}, 15)
 
@@ -260,7 +267,7 @@ export function Showreel({ chrome = true, className }: Props) {
       if (root.current) io.observe(root.current)
       return () => io.disconnect()
     },
-    { scope: root }
+    { scope: root, dependencies: [chrome] }
   )
 
   const toggle = () => {
