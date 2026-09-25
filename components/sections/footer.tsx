@@ -1,14 +1,18 @@
 import Image from "next/image"
 import { CONTACT_EMAIL } from "@/lib/contact"
 
+import Link from "next/link"
+
 const LINKS = [
-  { label: "Trabajos", href: "#trabajos" },
-  { label: "Integraciones", href: "#integraciones" },
-  { label: "Proceso", href: "#como-funciona" },
-  { label: "Equipo", href: "#equipo" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contacto", href: "#contacto" },
-]
+  { label: "Guías", href: "/guias", external: true },
+  { label: "Casos", href: "/casos", external: true },
+  { label: "Trabajos", href: "/#trabajos", external: false },
+  { label: "Integraciones", href: "/#integraciones", external: false },
+  { label: "Proceso", href: "/#como-funciona", external: false },
+  { label: "Equipo", href: "/#equipo", external: false },
+  { label: "FAQ", href: "/#faq", external: false },
+  { label: "Contacto", href: "/#contacto", external: false },
+] as const
 
 export function Footer() {
   return (
@@ -34,15 +38,25 @@ export function Footer() {
             </p>
           </div>
           <nav aria-label="Secciones" className="grid grid-cols-2 gap-x-10 sm:grid-cols-3">
-            {LINKS.map((l) => (
-              <a
-                key={l.href}
-                href={l.href}
-                className="inline-flex min-h-10 items-center text-xs text-muted-foreground transition-colors hover:text-foreground touch-manipulation"
-              >
-                {l.label}
-              </a>
-            ))}
+            {LINKS.map((l) =>
+              l.external ? (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="inline-flex min-h-10 items-center text-xs text-muted-foreground transition-colors hover:text-foreground touch-manipulation"
+                >
+                  {l.label}
+                </Link>
+              ) : (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  className="inline-flex min-h-10 items-center text-xs text-muted-foreground transition-colors hover:text-foreground touch-manipulation"
+                >
+                  {l.label}
+                </a>
+              )
+            )}
           </nav>
         </div>
         <div className="flex flex-col justify-between gap-2 border-t-[0.5px] border-foreground/15 pt-6 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground sm:flex-row">

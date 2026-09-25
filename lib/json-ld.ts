@@ -74,3 +74,81 @@ export function getHomeJsonLd() {
     "@graph": [professionalService, ...people, faqPage],
   }
 }
+
+export type ContentJsonLdInput = {
+  path: string
+  title: string
+  description: string
+  faqs: { q: string; a: string }[]
+  breadcrumbs: { name: string; path: string }[]
+  /** Article para guías; WebPage para índices y casos */
+  pageType?: "Article" | "WebPage"
+}
+
+const AUTHOR = {
+  "@type": "Person",
+  "@id": `${SITE_URL}/#guido-halley`,
+  name: "Guido Halley",
+  jobTitle: "Co-founder · Dirección técnica",
+}
+
+export function getContentJsonLd({
+  path,
+  title,
+  description,
+  faqs,
+  breadcrumbs,
+  pageType = "Article",
+}: ContentJsonLdInput) {
+  const url = `${SITE_URL}${path}`
+  const organizationId = `${SITE_URL}/#organization`
+
+  const mainEntity: Record<string, unknown> = {
+    "@type": pageType,
+    "@id": `${url}#content`,
+    headline: title,
+    name: title,
+    description,
+    url,
+    inLanguage: "es-AR",
+    isPartOf: { "@id": organizationId },
+    author: AUTHOR,
+    publisher: { "@id": organizationId },
+  }
+
+  if (pageType === "Article") {
+    mainEntity.datePublished = "2026-09-25"
+    mainEntity.dateModified = "2026-09-25"
+  }
+
+  const breadcrumbList = {
+    "@type": "BreadcrumbList",
+    "@id": `${url}#breadcrumb`,
+    itemListElement: breadcrumbs.map((b, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: b.name,
+      item: `${SITE_URL}${b.path}`,
+    })),
+  }
+
+  const faqPage =
+    faqs.length > 0
+      ? {
+          "@type": "FAQPage",
+          "@id": `${url}#faq`,
+          mainEntity: faqs.map(({ q, a }) => ({
+            "@type": "Question",
+            name: q,
+            acceptedAnswer: { "@type": "Answer", text: a },
+          })),
+        }
+      : null
+
+  const graph = [mainEntity, breadcrumbList, ...(faqPage ? [faqPage] : [])]
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": graph,
+  }
+}

@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { SystemDiagram } from "@/components/diagram/system-diagram"
 import { FenixSpecimen } from "@/components/specimens/specimens"
 import { byTipo } from "@/content/catalog"
@@ -31,7 +32,11 @@ export function Trabajos() {
                 <span className="rounded bg-foreground px-1 py-px text-background">caso destacado</span>
                 inmobiliaria
               </p>
-              <h3 className="text-2xl font-medium tracking-tight">Fénix Inmobiliaria</h3>
+              <h3 className="text-2xl font-medium tracking-tight">
+                <Link href="/casos/fenix" className="underline-offset-2 hover:underline">
+                  Fénix Inmobiliaria
+                </Link>
+              </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                 La gestión interna, la web y el portal de propiedades trabajan como una sola cosa.
                 Elegí un ejemplo y mirá cómo un dato pasa de la carga a la web y a comisiones.
