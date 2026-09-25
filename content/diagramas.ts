@@ -91,7 +91,7 @@ export const FENIX: Diagram = {
     {
       id: "railway",
       kind: "infra",
-      label: "Servidores",
+      label: "Donde corre todo",
       stack: "Railway · APIs, búsqueda y bases de datos",
       desktop: { col: 1, row: 3, span: 4 },
       mobile: { col: 0, row: 7, span: 2 },
@@ -147,7 +147,7 @@ export const ESCUELA: Diagram = {
     },
     { id: "api", kind: "api", label: "Lógica del sistema", stack: "API · Express · Zod", desktop: { col: 2, row: 0 }, mobile: { col: 1, row: 1 } },
     { id: "db", kind: "data", label: "Base de datos", stack: "MySQL · Sequelize", desktop: { col: 3, row: 0 }, mobile: { col: 0, row: 1 } },
-    { id: "railway", kind: "infra", label: "Servidores", stack: "Railway · API y base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
+    { id: "railway", kind: "infra", label: "Donde corre todo", stack: "Railway · API y base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
   ],
   edges: [
     { id: "a", from: "equipo", to: "app", kind: "data", label: "uso diario" },
@@ -184,7 +184,7 @@ export const FATIMA: Diagram = {
       mobile: { col: 1, row: 0 },
     },
     { id: "r2", kind: "infra", label: "Fotos y videos", stack: "Cloudflare R2 · CDN", desktop: { col: 3, row: 1 }, mobile: { col: 1, row: 2 } },
-    { id: "railway", kind: "infra", label: "Servidores", stack: "Railway · API y base de datos", desktop: { col: 1, row: 2, span: 3 }, mobile: { col: 0, row: 3, span: 2 } },
+    { id: "railway", kind: "infra", label: "Donde corre todo", stack: "Railway · API y base de datos", desktop: { col: 1, row: 2, span: 3 }, mobile: { col: 0, row: 3, span: 2 } },
   ],
   edges: [
     { id: "a", from: "compradores", to: "tienda", kind: "data", label: "pedidos" },
@@ -234,7 +234,7 @@ export const GYM: Diagram = {
       mobile: { col: 1, row: 0 },
     },
     { id: "s3", kind: "infra", label: "Videos de ejercicios", stack: "AWS S3", desktop: { col: 3, row: 1 }, mobile: { col: 1, row: 2 } },
-    { id: "railway", kind: "infra", label: "Servidores", stack: "Railway · API y base de datos", desktop: { col: 1, row: 2, span: 3 }, mobile: { col: 0, row: 3, span: 2 } },
+    { id: "railway", kind: "infra", label: "Donde corre todo", stack: "Railway · API y base de datos", desktop: { col: 1, row: 2, span: 3 }, mobile: { col: 0, row: 3, span: 2 } },
   ],
   edges: [
     { id: "a", from: "staff", to: "panel", kind: "data", label: "arma rutinas" },
@@ -266,7 +266,7 @@ export const INTACTO: Diagram = {
     },
     { id: "pg", kind: "data", label: "Base de datos", stack: "PostgreSQL · Prisma 7", desktop: { col: 2, row: 0 }, mobile: { col: 1, row: 1 } },
     { id: "mono", kind: "infra", label: "Código del proyecto", stack: "Monorepo · Turborepo", desktop: { col: 3, row: 0 }, mobile: { col: 0, row: 1 } },
-    { id: "railway", kind: "infra", label: "Servidores", stack: "Railway · apps y base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
+    { id: "railway", kind: "infra", label: "Donde corre todo", stack: "Railway · apps y base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
   ],
   edges: [
     { id: "a", from: "equipo", to: "apps", kind: "data", label: "carga OT" },
@@ -291,7 +291,7 @@ export const ERP: Diagram = {
     },
     { id: "api", kind: "api", label: "Lógica del sistema", stack: "API · Express · Prisma", desktop: { col: 2, row: 0 }, mobile: { col: 1, row: 1 } },
     { id: "pg", kind: "data", label: "Base de datos", stack: "PostgreSQL 16", desktop: { col: 3, row: 0 }, mobile: { col: 0, row: 1 } },
-    { id: "railway", kind: "infra", label: "Servidores", stack: "Railway · API y base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
+    { id: "railway", kind: "infra", label: "Donde corre todo", stack: "Railway · API y base de datos", desktop: { col: 1, row: 1, span: 3 }, mobile: { col: 0, row: 2, span: 2 } },
   ],
   edges: [
     { id: "a", from: "equipo", to: "app", kind: "data", label: "presupuesta" },
@@ -316,7 +316,7 @@ export const PROCESO: Diagram = {
     { id: "opera", kind: "step", label: "Opera el sistema", desktop: { col: 4, row: 0 }, mobile: null },
     { id: "relev", kind: "step", label: "Relevamiento", stack: "procesos y datos", desktop: { col: 0, row: 1 }, mobile: null },
     { id: "presu", kind: "step", label: "Propuesta", stack: "prototipo y presupuesto", desktop: { col: 1, row: 1 }, mobile: null },
-    { id: "dev", kind: "step", label: "Construcción por etapas", stack: "entregas semanales", desktop: { col: 3, row: 1 }, mobile: null },
+    { id: "dev", kind: "step", label: "Entregas semanales", stack: "construcción por etapas", desktop: { col: 3, row: 1 }, mobile: null },
     { id: "soporte", kind: "step", label: "Soporte continuo", desktop: { col: 4, row: 1 }, mobile: null },
     {
       id: "twenty",

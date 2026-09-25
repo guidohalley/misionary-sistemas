@@ -5,7 +5,7 @@ const COFOUNDERS = [
   {
     name: "Guido Halley",
     role: "Co-founder · Dirección técnica",
-    bio: "Lidera la estrategia y el diseño de sistemas a medida para empresas. Enfoque en arquitectura clara, entregas iterativas y equipos que escalan con el negocio.",
+    bio: "Lidera la estrategia y el diseño de cada sistema: entiende cómo funciona tu empresa, define qué construir y acompaña cada entrega hasta que el equipo lo usa todos los días.",
     initials: "GH",
     tags: ["Sistemas a medida", "Integraciones", "Acompañamiento"],
     stack: "Next.js · TypeScript · PostgreSQL",
