@@ -7,20 +7,18 @@ import { Badge } from "@/components/ui/badge"
 const COFOUNDERS = [
   {
     name: "Guido Halley",
-    role: "Co-founder · Systems Analyst & Web Developer",
-    bio: "Analista de Sistemas y desarrollador web con experiencia en el Poder Judicial de Misiones. Especialista en Next.js, TypeScript y arquitectura de sistemas.",
+    role: "Co-founder · Dirección técnica",
+    bio: "Lidera la estrategia y el diseño de sistemas a medida para empresas. Enfoque en arquitectura clara, entregas iterativas y equipos que escalan con el negocio.",
     initials: "GH",
-    tags: ["Next.js", "TypeScript", "Prisma", "PostgreSQL"],
+    tags: ["Next.js", "TypeScript", "Arquitectura", "PostgreSQL"],
   },
 ]
 
 const TEAM = [
-  { name: "Rodo", role: "Desarrollador", initials: "RO" },
-  { name: "Antonio", role: "Desarrollador", initials: "AN" },
-  { name: "Ana Bartholdy", role: "Operaciones", initials: "AB" },
-  { name: "Braian Gallegos", role: "Operaciones", initials: "BG" },
-  { name: "Lore Keo", role: "Operaciones", initials: "LK" },
-  { name: "Lucas Milde", role: "Operaciones", initials: "LM" },
+  { name: "Rodolfo", role: "Desarrollo de sistemas", initials: "RO" },
+  { name: "Lisandro Blanco", role: "Desarrollo de software", initials: "LB" },
+  { name: "Antonio", role: "Desarrollo de sistemas", initials: "AN" },
+  { name: "Tomas Roetti", role: "Páginas web", initials: "TR" },
 ]
 
 const cardVariants = {
@@ -92,7 +90,7 @@ export function Team() {
         </motion.div>
 
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3"
+          className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-2 sm:gap-3"
           variants={{ hidden: {}, show: { transition: { staggerChildren: 0.06 } } }}
           initial="hidden"
           whileInView="show"
