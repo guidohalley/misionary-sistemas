@@ -12,20 +12,28 @@ export function Clientes() {
           <span className="h-px w-6 bg-foreground/25" />
           Empresas que confían en nosotros
         </p>
-        <ul className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/10 md:grid-cols-7">
+        <ul
+          className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border-[0.5px] border-foreground/15 bg-foreground/10 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+        >
           {clients.map((c) => (
             <li
               key={c.slug}
-              className="flex min-h-20 flex-col justify-between gap-2 bg-background px-3.5 py-3"
+              className="flex h-16 items-center justify-center bg-background px-4 sm:h-20"
             >
               {c.logo ? (
-                <Image src={c.logo} alt={c.nombre} width={96} height={28} unoptimized className="h-6 w-auto opacity-70 grayscale" />
+                <Image
+                  src={c.logo}
+                  alt={c.nombre}
+                  width={120}
+                  height={32}
+                  unoptimized
+                  className="max-h-7 max-w-[7.5rem] object-contain opacity-80 grayscale transition-[filter,opacity] duration-200 hover:opacity-100 hover:grayscale-0 sm:max-h-8"
+                />
               ) : (
-                <span className="text-sm font-medium tracking-tight text-foreground/80">{c.nombre}</span>
+                <span className="max-w-[7.5rem] text-center text-sm font-medium leading-tight tracking-tight text-foreground/85">
+                  {c.nombre}
+                </span>
               )}
-              <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground">
-                {c.tipo === "sitio" ? "sitio web" : c.rubro}
-              </span>
             </li>
           ))}
         </ul>
