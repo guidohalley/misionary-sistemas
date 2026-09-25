@@ -5,27 +5,27 @@ import { SectionHeader } from "./section-header"
 const STEPS = [
   {
     n: "01",
-    lane: "cliente + misionary",
-    title: "Diagnóstico y relevamiento",
-    description: "Entendemos tu negocio, tus procesos y tus datos. Sin costo ni compromiso.",
+    lane: "juntos",
+    title: "Charlamos y relevamos",
+    description: "Entendemos cómo funciona tu negocio hoy y qué querés resolver. Sin costo ni compromiso.",
   },
   {
     n: "02",
-    lane: "misionary · ERP",
+    lane: "nuestro equipo",
     title: "Propuesta y prototipo",
-    description: "Te mostramos cómo quedaría el sistema y un presupuesto claro, armado en nuestro ERP.",
+    description: "Te mostramos cómo quedaría el sistema y un presupuesto claro antes de empezar.",
   },
   {
     n: "03",
-    lane: "misionary + cliente",
-    title: "Desarrollo iterativo",
-    description: "Entregas semanales: ves el avance, lo probás y das feedback en cada etapa.",
+    lane: "juntos",
+    title: "Construcción por etapas",
+    description: "Cada semana ves avances, los probás y nos decís qué ajustar.",
   },
   {
     n: "04",
-    lane: "plataformas",
-    title: "Producción, operación y soporte",
-    description: "Deploy en infraestructura propia del proyecto, capacitación y soporte continuo.",
+    lane: "nuestro equipo",
+    title: "Publicación, capacitación y soporte",
+    description: "Publicamos el sistema, capacitamos a tu equipo y seguimos con soporte.",
   },
 ]
 
@@ -36,8 +36,8 @@ export function HowItWorks() {
         <SectionHeader
           index="07"
           label="Proceso"
-          title="Cómo trabajamos, como un sistema más."
-          description="Operamos con nuestras propias plataformas: ERP Misionary para propuestas y Twenty como CRM."
+          title="Cómo trabajamos con tu empresa, paso a paso."
+          description="Usamos nuestras propias herramientas para presupuestar y seguir cada proyecto; vos ves avances claros cada semana."
         />
 
         <div className="hidden md:block">

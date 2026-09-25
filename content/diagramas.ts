@@ -310,13 +310,13 @@ export const PROCESO: Diagram = {
     { label: "Herramientas", row: 2 },
   ],
   nodes: [
-    { id: "diag", kind: "step", label: "Diagnóstico", stack: "sin costo", desktop: { col: 0, row: 0 }, mobile: null },
+    { id: "diag", kind: "step", label: "Primera charla", stack: "diagnóstico sin costo", desktop: { col: 0, row: 0 }, mobile: null },
     { id: "aprueba", kind: "step", label: "Aprueba la propuesta", desktop: { col: 2, row: 0 }, mobile: null },
     { id: "prueba", kind: "step", label: "Prueba cada entrega", desktop: { col: 3, row: 0 }, mobile: null },
     { id: "opera", kind: "step", label: "Opera el sistema", desktop: { col: 4, row: 0 }, mobile: null },
     { id: "relev", kind: "step", label: "Relevamiento", stack: "procesos y datos", desktop: { col: 0, row: 1 }, mobile: null },
     { id: "presu", kind: "step", label: "Propuesta", stack: "prototipo y presupuesto", desktop: { col: 1, row: 1 }, mobile: null },
-    { id: "dev", kind: "step", label: "Desarrollo iterativo", stack: "entregas semanales", desktop: { col: 3, row: 1 }, mobile: null },
+    { id: "dev", kind: "step", label: "Construcción por etapas", stack: "entregas semanales", desktop: { col: 3, row: 1 }, mobile: null },
     { id: "soporte", kind: "step", label: "Soporte continuo", desktop: { col: 4, row: 1 }, mobile: null },
     {
       id: "twenty",
