@@ -27,7 +27,7 @@ export function Clientes() {
                   width={120}
                   height={32}
                   unoptimized
-                  className="max-h-7 max-w-[7.5rem] object-contain opacity-80 grayscale transition-[filter,opacity] duration-200 hover:opacity-100 hover:grayscale-0 sm:max-h-8"
+                  className="max-h-7 max-w-[7.5rem] object-contain opacity-80 grayscale transition-[filter,opacity] duration-200 hover:opacity-100 hover:grayscale-0 dark:grayscale-0 dark:brightness-0 dark:invert dark:opacity-70 dark:hover:opacity-100 sm:max-h-8"
                 />
               ) : (
                 <span className="max-w-[7.5rem] text-center text-sm font-medium leading-tight tracking-tight text-foreground/85">

@@ -22,7 +22,10 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#FAFAFA",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FAFAFA" },
+    { media: "(prefers-color-scheme: dark)", color: "#121212" },
+  ],
 }
 
 const title = "Software factory y sistemas a medida | Posadas · Misionary"
@@ -31,8 +34,15 @@ const description =
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://misionary.dev"),
-  title,
+  title: {
+    default: title,
+    template: "%s · Misionary",
+  },
   description,
+  applicationName: "Misionary",
+  authors: [{ name: "Misionary", url: "https://misionary.dev" }],
+  creator: "Misionary",
+  publisher: "Misionary",
   keywords: [
     "sistemas a medida",
     "software factory Posadas",
@@ -40,6 +50,11 @@ export const metadata: Metadata = {
     "integraciones Mercado Pago",
     "software para empresas Argentina",
   ],
+  appleWebApp: {
+    capable: true,
+    title: "Misionary",
+    statusBarStyle: "default",
+  },
   openGraph: {
     title,
     description,
@@ -47,20 +62,11 @@ export const metadata: Metadata = {
     siteName: "Misionary",
     locale: "es_AR",
     type: "website",
-    images: [
-      {
-        url: "https://cdn.misionary.misionary.com.ar/Logos%20Misionary_MSNR-13.svg",
-        width: 1200,
-        height: 630,
-        alt: "Misionary — Sistemas a medida",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title,
     description,
-    images: ["https://cdn.misionary.misionary.com.ar/Logos%20Misionary_MSNR-13.svg"],
   },
   robots: {
     index: true,
