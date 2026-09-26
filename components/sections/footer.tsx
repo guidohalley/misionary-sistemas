@@ -1,7 +1,6 @@
-import Image from "next/image"
-import { CONTACT_EMAIL } from "@/lib/contact"
-
 import Link from "next/link"
+import { BrandMark } from "@/components/brand-mark"
+import { CONTACT_EMAIL } from "@/lib/contact"
 
 const LINKS = [
   { label: "Guías", href: "/guias", external: true },
@@ -20,14 +19,8 @@ export function Footer() {
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 flex flex-col justify-between gap-8 md:flex-row">
           <div className="max-w-xs">
-            <div className="mb-3 flex items-center gap-2">
-              <Image
-                src="https://cdn.misionary.misionary.com.ar/Logos%20Misionary_M-10.svg"
-                alt="Misionary"
-                width={26}
-                height={26}
-                unoptimized
-              />
+            <div className="mb-3 flex items-center gap-2 text-foreground">
+              <BrandMark className="size-[26px]" />
               <span className="text-sm font-medium tracking-tight">
                 misionary<span className="font-normal text-muted-foreground">.dev</span>
               </span>

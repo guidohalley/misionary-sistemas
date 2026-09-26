@@ -1,10 +1,10 @@
 "use client"
 
 import Link from "next/link"
-import Image from "next/image"
 import { useState, useEffect } from "react"
 import { Menu, X } from "lucide-react"
 import { motion, AnimatePresence } from "motion/react"
+import { BrandMark } from "@/components/brand-mark"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
@@ -40,15 +40,8 @@ export function Navbar() {
       )}
     >
       <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:h-16 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="https://cdn.misionary.misionary.com.ar/Logos%20Misionary_M-10.svg"
-            alt="Misionary"
-            width={28}
-            height={28}
-            unoptimized
-            priority
-          />
+        <Link href="/" className="flex items-center gap-2 text-foreground">
+          <BrandMark className="size-7" />
           <span className="text-sm font-medium tracking-tight">
             misionary<span className="font-normal text-muted-foreground">.dev</span>
           </span>
